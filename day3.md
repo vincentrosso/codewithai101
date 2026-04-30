@@ -1,4 +1,5 @@
 # Day 3 — First Real Script: Fetching a Webpage
+*v1.0.0*
 
 **Goal for today:** write a Python script that takes a URL, fetches the page, extracts the title, and saves it to a file. This is the seed of the capstone — every week's project grows from this.
 

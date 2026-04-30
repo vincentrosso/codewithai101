@@ -1,4 +1,5 @@
 # Day 1 — Setup & First Contact
+*v1.1.0*
 
 **Goal for today:** by the end of two hours, you have a working development environment, a GitHub account, and you've written and run your first Python program. Nothing fancy — just the toolchain working end to end and you knowing where everything lives.
 
@@ -22,15 +23,17 @@ Go to sublimetext.com, download the macOS build, open the .dmg, drag Sublime Tex
 
 Go to ghostty.org, download, drag to Applications, open it. This is your terminal — for the rest of this course, when something says "in the terminal," it means here. Take a second to notice what you're looking at: a blank screen with a prompt. That prompt is waiting for a command. That's the whole interface.
 
-## 3. Remap Spotlight to Option-Space (~5 min)
+## 3. Set up your app launcher (~5 min)
 
-Spotlight is already installed — it's the macOS built-in launcher. By default it's bound to Cmd-Space, but Option-Space is a more comfortable reach and frees Cmd-Space for other things later.
+**Mac:** Spotlight is already installed. By default it's bound to Cmd-Space, but Option-Space is a more comfortable reach and frees Cmd-Space for other things later.
 
 Open System Settings → Keyboard → Keyboard Shortcuts → Spotlight. You'll see "Show Spotlight search" with Cmd-Space next to it. Click the shortcut, then press **Option-Space**. Close settings.
 
 Now test it: hit Option-Space, type `subl`, hit return — Sublime should open. Hit Option-Space again, type `ghos`, hit return — Ghostty opens. Practice this four or five times with different apps until your fingers know the motion without thinking.
 
-The rule for the rest of this course: **don't use the dock, don't use Finder to open apps**. Option-Space, type, return. Keyboard fluency is the foundation everything else sits on, and breaking the mouse habit early is worth the small friction now.
+**Windows:** Press the **Windows key**, type the app name, hit Enter — that's your Spotlight equivalent and it works out of the box. If you want a closer match to the Option-Space shortcut, install **PowerToys**: go to github.com/microsoft/PowerToys, download the installer, run it, then open PowerToys → PowerToys Run and confirm the shortcut is set to **Alt+Space**. From then on, Alt+Space works the same way as Option-Space on Mac.
+
+The rule for the rest of this course: **don't use the taskbar or dock to open apps**. Use the keyboard launcher. Keyboard fluency is the foundation everything else sits on, and breaking the mouse habit early is worth the small friction now.
 
 ## 4. Mac terminal basics in Ghostty (~20 min)
 

@@ -1,4 +1,5 @@
 # Day 4 — Loops, Lists, and a Script That Fetches Many Pages
+*v1.0.0*
 
 **Goal for today:** turn yesterday's one-URL-at-a-time script into something that processes a list of URLs in a loop, handles errors gracefully, and produces a clean dataset. By end of day, you have a tiny but real research tool — you give it a list of brand websites, it gives you back a structured file of titles and metadata.
 

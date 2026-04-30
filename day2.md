@@ -1,4 +1,5 @@
 # Day 2 — Git, GitHub, and Python with Shape
+*v1.1.0*
 
 **Goal for today:** your laptop and GitHub talk to each other, you understand what git is actually doing when you commit, and you've written Python that does more than print one line.
 
@@ -40,7 +41,30 @@ That last line should now show 3.12.something. If it still shows 3.9, close Ghos
 
 **What just happened:** you installed a tool (`brew`) whose job is installing other tools. You then used it to install a newer Python. The terminal is your interface to all of this — there's no app to click, no installer wizard. This is what "developer environment" means.
 
-## 3. Install and configure git (~10 min)
+## 3. Make `subl` a terminal command (~5 min)
+
+Right now opening a file in Sublime means typing `open -a "Sublime Text" hello.py` — that's a lot. Developers use `subl hello.py` instead. Let's wire that up.
+
+Sublime ships with a command-line tool at a buried path inside the app bundle. We'll create an alias in your shell config so the terminal knows what `subl` means:
+
+```
+echo 'alias subl="/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+The first line appends the alias definition to `~/.zshrc` — a file Ghostty reads every time it opens, so the alias is permanent. `source` reloads that file immediately so you don't have to restart the terminal.
+
+Test it:
+
+```
+subl hello.py
+```
+
+Sublime should open the file. From here on, use `subl` everywhere — it also accepts a folder (`subl .` opens the whole project) and multiple files at once.
+
+**What just happened:** `~/.zshrc` is your shell's config file. It runs automatically on every new terminal session. Putting things in it is how you customize your environment — aliases, PATH changes, and other settings all live here. You'll add more to it over the course.
+
+## 4. Install and configure git (~10 min)
 
 ```
 brew install git
@@ -57,7 +81,7 @@ git config --global init.defaultBranch main
 
 The `--global` means "use this for every project on this machine." You only do this once per laptop.
 
-## 4. Connect your laptop to GitHub (~15 min)
+## 5. Connect your laptop to GitHub (~15 min)
 
 GitHub needs to know it's really you when you push code from your laptop. We'll use SSH keys — a cryptographic handshake that's both more secure and less annoying than passwords.
 
@@ -83,7 +107,7 @@ ssh -T git@github.com
 
 It'll ask if you trust GitHub — type `yes`. You should see `Hi yourusername! You've successfully authenticated...`. If you see that, you're done. If not, raise it in the journal and we'll fix it Friday.
 
-## 5. Make your first repository (~15 min)
+## 6. Make your first repository (~15 min)
 
 A "repository" (repo) is just a folder that git is tracking. Let's turn `brand-lens` into one.
 
@@ -128,9 +152,15 @@ git push -u origin main
 
 Refresh the GitHub page. Your code is there. **This is a big moment** — your work is now backed up, shareable, and version-controlled.
 
-## 6. Python with shape (~25 min)
+## 7. Python with shape (~25 min)
 
-Open `hello.py` in Sublime (`open -a "Sublime Text" hello.py` from the project directory, or just Option-Space → Sublime, then Cmd-O). Replace it with:
+Open `hello.py` in Sublime:
+
+```
+subl hello.py
+```
+
+Replace it with:
 
 ```python
 name = input("what's your name? ")
@@ -147,7 +177,7 @@ Now extend it. Try to write each of these yourself before peeking. If you get st
 
 These introduce: multiple inputs, type conversion (input is always a string — you'll need `int()`), `if`/`else`, and basic math. You'll hit errors. Read them. The first line of a Python error tells you which file and line; the last line tells you what went wrong. Most errors today will be either forgetting `int()` or a typo.
 
-## 7. Commit your work (~5 min)
+## 8. Commit your work (~5 min)
 
 ```
 git status
@@ -158,7 +188,7 @@ git push
 
 Check GitHub — your changes are there. The four-command rhythm (`status`, `add`, `commit`, `push`) is something you'll do dozens of times a week.
 
-## 8. Journal (~15 min)
+## 9. Journal (~15 min)
 
 `journal/day2.md`, same three sections. Specifically include in "what confused me":
 
