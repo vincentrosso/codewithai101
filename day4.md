@@ -1,0 +1,278 @@
+# Day 4 — Loops, Lists, and a Script That Fetches Many Pages
+
+**Goal for today:** turn yesterday's one-URL-at-a-time script into something that processes a list of URLs in a loop, handles errors gracefully, and produces a clean dataset. By end of day, you have a tiny but real research tool — you give it a list of brand websites, it gives you back a structured file of titles and metadata.
+
+**Time budget:** ~90 min hands-on, ~15 min journal, ~15 min slack.
+
+---
+
+## 1. Warm-up & re-activate (~10 min)
+
+Open Ghostty. From memory, do the following — peek only if truly stuck:
+
+- Navigate to the project
+- Activate the virtual environment (your prompt should show `(venv)`)
+- Run `git status` (should be clean)
+- Run `git log` and look at your three commits so far. Press `q` to exit.
+- Run `python3 fetch.py` once with any URL to confirm it still works
+
+If activating the venv tripped you up: that's the single most-forgotten command of the whole course. Make a mental hook for it. The exact command is `source venv/bin/activate` and you'll type it thousands of times.
+
+## 2. Lists and loops in Python (~20 min)
+
+Yesterday's script handled one URL. Real research tools handle dozens or hundreds. The Python construct that makes that possible is the **list** + **for loop**.
+
+Create a scratch file to play in:
+
+```
+touch scratch.py
+open -a "Sublime Text" scratch.py
+```
+
+Type this — don't paste:
+
+```python
+brands = ["Innisfree", "Laneige", "COSRX", "Sulwhasoo"]
+
+print(brands)
+print(len(brands))
+print(brands[0])
+print(brands[-1])
+
+for brand in brands:
+    print("checking:", brand)
+```
+
+Run it. Read the output. Notice:
+
+- A list is just an ordered collection of things, written with square brackets.
+- `len()` tells you how many items are in it.
+- `brands[0]` is the first item — Python (like most languages) starts counting from zero, not one. This will trip you up at least twice. That's fine.
+- `brands[-1]` is the last item. Negative indexing is a Python nicety; not every language has it.
+- The `for` loop runs the indented block once for each item, with the variable `brand` taking on each value in turn.
+
+Now experiment. Try each of these in `scratch.py`, run after each:
+
+```python
+brands.append("Amorepacific")
+print(brands)
+
+for i, brand in enumerate(brands):
+    print(i, brand)
+
+short_names = [b for b in brands if len(b) < 8]
+print(short_names)
+```
+
+The last one is a **list comprehension** — it builds a new list by filtering an existing one. Read it as English: "the list of `b` for each `b` in brands, where the length of `b` is less than 8." You don't need to write these yourself yet; just recognize them when you see them.
+
+`scratch.py` doesn't need to be committed. We won't push it. It exists only to play in. Real software development involves a lot of "let me try this in a scratch file" — get used to having one.
+
+## 3. The plan for today's real script (~5 min)
+
+Before writing code, write the plan in plain English. Open a new comment block at the top of a new file:
+
+```
+touch fetch_many.py
+open -a "Sublime Text" fetch_many.py
+```
+
+In Sublime, start with this — just comments, no code yet:
+
+```python
+# fetch_many.py
+# Read a list of URLs from urls.txt (one URL per line)
+# For each URL:
+#   - fetch it
+#   - extract the title
+#   - record the result (URL, title, status, timestamp)
+#   - if anything goes wrong, record the error instead of crashing
+# Write all results to results.json (one JSON object per line)
+# Print a short summary at the end: how many succeeded, how many failed
+```
+
+Save. Now build the input file:
+
+```
+touch urls.txt
+open -a "Sublime Text" urls.txt
+```
+
+Put 5–8 real URLs in there, one per line. Mix of Korean brand sites (innisfree.com, laneige.com, etc.), one or two American sites for comparison, and **one URL that you know will fail** — maybe `https://this-is-not-a-real-domain-9999.com`. The failing one is on purpose; you want to test that your script handles failures.
+
+Save. Run `cat urls.txt` in the terminal to confirm it looks right.
+
+## 4. Build the script step by step (~30 min)
+
+Now write the script. Build it incrementally — get one piece working before adding the next. This is the single most important habit in programming.
+
+### Step A: read the URLs file
+
+In `fetch_many.py`, below your comments:
+
+```python
+with open("urls.txt") as f:
+    urls = [line.strip() for line in f if line.strip()]
+
+print(f"loaded {len(urls)} urls")
+for url in urls:
+    print(" -", url)
+```
+
+Run it. You should see the count and the URLs listed. The `line.strip()` removes trailing newlines and spaces; the `if line.strip()` skips blank lines. The `f"..."` is an **f-string** — Python's way of inserting variables into text.
+
+If that works, move on. If it doesn't, fix it before continuing. Don't pile new code on top of broken code.
+
+### Step B: fetch one URL inside the loop
+
+Add `requests` and the loop:
+
+```python
+import requests
+from bs4 import BeautifulSoup
+
+with open("urls.txt") as f:
+    urls = [line.strip() for line in f if line.strip()]
+
+print(f"loaded {len(urls)} urls")
+
+for url in urls:
+    print(f"fetching {url}...")
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, "html.parser")
+    title = soup.title.string if soup.title else "(no title)"
+    print(f"  -> {title}")
+```
+
+Run it. **It will probably crash partway through** — on the bad URL you put in. Read the error. Notice it stops the entire script. That's the problem we're fixing next.
+
+### Step C: handle errors with try/except
+
+Wrap the risky operations:
+
+```python
+import requests
+from bs4 import BeautifulSoup
+from datetime import datetime
+import json
+
+with open("urls.txt") as f:
+    urls = [line.strip() for line in f if line.strip()]
+
+print(f"loaded {len(urls)} urls")
+
+results = []
+successes = 0
+failures = 0
+
+for url in urls:
+    print(f"fetching {url}...")
+    record = {
+        "url": url,
+        "fetched_at": datetime.now().isoformat(),
+    }
+    try:
+        response = requests.get(url, timeout=10)
+        soup = BeautifulSoup(response.text, "html.parser")
+        title = soup.title.string if soup.title else "(no title)"
+        record["status"] = response.status_code
+        record["title"] = title.strip()
+        record["error"] = None
+        successes += 1
+        print(f"  -> {title.strip()}")
+    except Exception as e:
+        record["status"] = None
+        record["title"] = None
+        record["error"] = str(e)
+        failures += 1
+        print(f"  -> FAILED: {e}")
+    results.append(record)
+
+with open("results.json", "w") as f:
+    for r in results:
+        f.write(json.dumps(r) + "\n")
+
+print(f"\ndone. {successes} succeeded, {failures} failed.")
+print(f"results saved to results.json")
+```
+
+Run it. The bad URL should now show `FAILED:` with an error message, but the script keeps going and processes the rest. At the end you get a summary, and `results.json` has every URL — successful or not — with its outcome.
+
+**This is real software.** Not toy software. A tool that takes input, processes a batch with graceful error handling, and produces structured output is what most professional code actually looks like. You wrote one on Day 4.
+
+## 5. Inspect your output (~10 min)
+
+In the terminal:
+
+```
+cat results.json
+```
+
+That dumps the file. Hard to read because each line is long. Try:
+
+```
+cat results.json | head -1 | python3 -m json.tool
+```
+
+That pretty-prints just the first line. Pipes (`|`) chain commands together — the output of `cat` becomes the input of `head`, whose output becomes the input of `python3 -m json.tool`. Pipes are one of the terminal's superpowers; you'll learn more of them over time.
+
+Alternatively, just open `results.json` in Sublime — it'll be readable enough.
+
+## 6. Commit and push (~5 min)
+
+```
+git status
+git add fetch_many.py urls.txt
+git commit -m "add fetch_many: batch URL fetching with error handling"
+git push
+```
+
+Note we're committing `urls.txt` because it's small and shows what you tested with. We're **not** committing `results.json` — it's data, and it's already in `.gitignore`.
+
+Confirm the push by refreshing your GitHub repo page. You should see the new files.
+
+## 7. Stretch goal (only if time, no AI) (~10 min)
+
+If you finished early and want more: extend the script to also extract and save the **meta description** (the short blurb a page provides for search engines). Hint: it lives in HTML like this:
+
+```html
+<meta name="description" content="...">
+```
+
+You'll need to use `soup.find()` with arguments. Don't ask AI. Try the BeautifulSoup docs (beautiful-soup-4.readthedocs.io) and Stack Overflow. If you can't get it in 20 minutes, stop, write down what you tried, and bring it to Friday.
+
+## 8. Journal (~15 min)
+
+`journal/day4.md`. Specifically address:
+
+- What's the difference between a list and a string? Give an example.
+- In your own words, what does `try`/`except` do, and why did your script need it?
+- What's one thing you wrote today that you don't fully understand?
+- How does today's script (`fetch_many.py`) relate to the eventual capstone (a brand research tool)?
+
+That last question matters. From here on out, every day's work should feed the capstone. If you ever lose sight of why you're doing something, ask Vincent.
+
+---
+
+## What "done" looks like for Day 4
+
+- `fetch_many.py` exists, runs against `urls.txt`, and produces a `results.json` file
+- The script doesn't crash when one of the URLs is bad
+- You can read your own code and explain what each section does
+- Repo is pushed to GitHub
+- Day 4 journal entry includes an honest "what I don't fully understand" section
+
+---
+
+## What "done" looks like for Week 1 (Friday review with Vincent)
+
+This is the calibration moment. From a blank terminal, you should be able to:
+
+1. Activate the venv
+2. Show your GitHub repo and walk through your commit history
+3. Run `fetch_many.py` and explain what each part does — including `try/except`, the for loop, and the JSON output
+4. Read a deliberately-broken version of your own code (Vincent introduces a typo or bug live) and identify what's wrong without AI help
+5. List, from your journal, the three things that still feel like magic — these become Week 2's targets
+
+If 1–3 are solid but 4–5 are shaky: you're on track, Week 2 starts on schedule.
+If 1–3 are shaky: Week 2 starts with a redo of Days 3–4 and the schedule slides by a few days. That's fine and expected.
