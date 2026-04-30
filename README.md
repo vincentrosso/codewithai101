@@ -22,4 +22,4 @@ Week 1 is intentionally **AI-free**. The goal is to build the muscle that lets t
 
 ## Friday review
 
-The week ends with a 30-minute mentor session. The learner demos the work, walks through specific lines of code, and debugs a deliberately-broken version live (no AI). This live debug is the single most important assessment of the course — it can't be faked.
+The week ends with a 30-minute mentor session. The learner demos the work, walks through specific lines of code, and debugs a deliberately-broken version live (no AI).
