@@ -1,0 +1,86 @@
+# Day 14 — Mentor Review: Brand-Level Pipeline
+*v1.0.0*
+
+**Goal for today:** prep for and run the Week 3 mentor review. By the end of the day Vincent has watched you demo a brand-level pipeline that takes a YAML config and produces both nested JSON and a flat CSV, walked you through a deliberately-broken version, and judged your Claude usage.
+
+**Time budget:** ~30 min prep, ~30 min review with Vincent, ~15 min journal.
+
+---
+
+## 1. Quick warm-up (~5 min)
+
+Activate venv. Run:
+
+```
+python3 runner.py --help
+python3 runner.py --limit 1 --csv test.csv
+```
+
+Confirm both work end to end.
+
+## 2. Prep checklist (~30 min)
+
+Walk through each item before the review. If you can't do one of these without notes, that's the one Vincent will ask about.
+
+1. **Cold start.** From "I just opened my laptop," list the exact commands needed to get to a successful `runner.py --limit 1` run. Write them down.
+2. **The shape.** Open `runner.py`, `fetch.py`, `parse.py`. For each, write one sentence describing what concern it owns and what it does *not* know about. (e.g. "fetch.py knows about HTTP, knows nothing about HTML.")
+3. **The data flow.** Trace one page from the URL in `brands.yaml` to the row in `results.csv`. Which function touches it at each stage?
+4. **The argparse choices.** For each flag (`--input`, `--output`, `--limit`, `--verbose`, `--csv`), why does it exist? What would the script feel like without it?
+5. **The hardest line.** Pick the one line in your three files you'd be most embarrassed not to be able to explain. Ask Claude to explain it. Read carefully. Decide whether the explanation is right.
+
+## 3. Run with Vincent (~30 min)
+
+Vincent's session structure:
+
+1. **Demo (10 min).** You drive. Show `brands.yaml`, the three modules, run `runner.py --limit 1 --csv out.csv`, open both outputs.
+2. **Walk-through (10 min).** Vincent picks a function (probably `process_url` or `parse_page`) and asks you to explain it line by line. No notes, no AI.
+3. **Bug hunt (5 min).** Vincent introduces a bug while you're not looking — a wrong path, an inverted condition, a missing import. You debug, no AI.
+4. **Claude judgment (5 min).** Vincent picks a snippet from your code and prompts Claude in front of you. He may nudge Claude toward a wrong answer. You decide whether the explanation is right.
+
+## 4. Commit anything you fix (~5 min)
+
+If the bug hunt or walk-through reveals something genuinely broken (not Vincent's deliberate bug — a real issue), fix it after the session and commit:
+
+```
+git add <files>
+git commit -m "fix issue caught in week 3 review"
+git push
+```
+
+## 5. Journal — Week 3 retrospective (~15 min)
+
+`journal/day14.md`. Use these questions:
+
+```
+## What I shipped this week
+(short list)
+
+## Where I struggled in the review
+(specific moments — a function I couldn't explain, a bug I missed)
+
+## What I don't fully understand
+(specific lines or concepts from this week)
+
+## How I used Claude this week
+- Did I follow Rule 1 (explain, not write)?
+- Did I follow Rule 2 (run everything myself)?
+- One time Claude was helpful, one time it wasn't.
+
+## What I want to learn next week
+(based on the review, what's the gap?)
+```
+
+---
+
+## What "done" looks like for Week 3 (Friday review with Vincent)
+
+From a blank terminal, you should be able to:
+
+1. Run `python3 runner.py --help` and explain every flag
+2. Walk through `process_url(url)` and explain what `fetch_one` and `parse_page` each return
+3. Show both `results.json` and `results.csv`, and explain the difference in shape
+4. Find a bug Vincent introduced into one of your three files, without AI
+5. Judge a Claude explanation of one of your snippets — agree or disagree, with reasoning
+
+If 1–3 are solid but 4–5 are shaky: you're on track for Week 4.
+If 1–3 are shaky: Week 4 starts with a re-do day.

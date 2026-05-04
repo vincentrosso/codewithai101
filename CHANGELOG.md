@@ -81,3 +81,38 @@ Versions follow `major.minor.patch`. Default bump is **patch** (typos, wording, 
 
 ### v1.0.0 — 2026-05-04
 - Initial release: CSV output via DictWriter; sorted results; Week 2 mentor review with Claude-judging twist
+
+---
+
+## day10.md
+
+### v1.0.0 — 2026-05-04
+- Initial release: structured `brands.yaml` config; nested loop over brands × pages; aggregated `results.json`
+
+---
+
+## day11.md
+
+### v1.0.0 — 2026-05-04
+- Initial release: split into `fetch.py`, `parse.py`, `runner.py`; introduce imports and `if __name__ == "__main__":`
+
+---
+
+## day12.md
+
+### v1.0.0 — 2026-05-04
+- Initial release: foundations day on file I/O, context managers, paths (relative vs absolute, `pathlib`), and UTF-8 encoding; no-AI mini-quiz
+
+---
+
+## day13.md
+
+### v1.0.0 — 2026-05-04
+- Initial release: `argparse` with `--input`, `--output`, `--limit`, `--verbose`, `--csv`; flat per-page CSV returns
+
+---
+
+## day14.md
+
+### v1.0.0 — 2026-05-04
+- Initial release: Week 3 mentor review — pipeline demo, bug hunt, Claude judgment, retrospective journal

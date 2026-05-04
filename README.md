@@ -32,6 +32,29 @@ Claude (browser, claude.ai) comes online — under two strict rules: ask Claude 
 | [Day 8](day8.md) | Richer parsing: meta description, og:title, h1, canonical URL |
 | [Day 9](day9.md) | CSV output, sorting; mentor review with a Claude-judging twist |
 
+## Week 3
+
+Move from a flat URL list to a structured `brands.yaml` config; split the script into modules; add a real CLI with `argparse`. By Friday the pipeline takes a brand config, fetches every page per brand, and writes both nested JSON and a flat CSV.
+
+| Day | Focus |
+|-----|-------|
+| [Day 10](day10.md) | YAML config: `brands.yaml` with brand → pages; aggregate results per brand |
+| [Day 11](day11.md) | Modules: split into `fetch.py`, `parse.py`, `runner.py`; `__name__ == "__main__"` |
+| [Day 12](day12.md) | Foundations: file I/O, paths, encodings — no code, no AI, mini-quiz |
+| [Day 13](day13.md) | Real CLI: `argparse` with `--input`, `--output`, `--limit`, `--csv`; flat CSV returns |
+| [Day 14](day14.md) | Mentor review — brand-level pipeline demo and bug hunt |
+
+## Weeks 4–6 (sketches — subject to change)
+
+### Week 4 — Persisting and querying
+Move from CSV/JSON files to **SQLite** (built into Python, no install). Create `brands` and `fetches` tables. Learn raw SQL: `SELECT`, `WHERE`, `JOIN`, `GROUP BY` — no ORM. Foundations day on relational thinking and primary keys. By Friday, the pipeline writes to a database and you can answer "how many brands have a meta description?" with a single SQL query.
+
+### Week 5 — First LLM calls
+Anthropic API enters the codebase. Tyler stops using Claude in a browser tab and starts calling it directly from Python with the official SDK. Topics: API keys, `.env` files, structured-output prompts (get JSON back, not prose). Foundations day on what an API actually is, authentication, and rate limits. By Friday, the pipeline fetches pages and produces an LLM-generated brand summary per brand.
+
+### Week 6 — From tool to brief (MVP, mid-course)
+Combine fetched data and LLM summaries into per-brand markdown briefs using `jinja2` templates. Generate a `briefs/` directory with one file per brand. Foundations day on project structure, `requirements.txt`, `README.md`, and a basic GitHub Actions CI step that runs the script on push. Friday is the mid-course retrospective — Brand Lens MVP demo and a look back at the first six weeks before the curriculum hands off to harder topics.
+
 ## Friday review
 
 The week ends with a 30-minute mentor session. The learner demos the work, walks through specific lines of code, and debugs a deliberately-broken version live (no AI). Starting Week 2, the learner also demos Claude on a snippet and judges whether the explanation is correct.
