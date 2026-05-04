@@ -6,6 +6,9 @@ Versions follow `major.minor.patch`. Default bump is **patch** (typos, wording, 
 
 ## day1.md
 
+### v1.2.0 — 2026-05-04
+- Reframed the journal "what confused me / felt magical" section as "What I don't fully understand" — asks for specific commands or lines instead of vague reflection
+
 ### v1.1.0 — 2026-04-30
 - Section 3 expanded to cover both Mac and Windows: Win key as built-in launcher, PowerToys Run as Alt+Space alternative
 
@@ -28,6 +31,9 @@ Versions follow `major.minor.patch`. Default bump is **patch** (typos, wording, 
 
 ## day3.md
 
+### v1.1.0 — 2026-05-04
+- Removed "magic" framing from section 4 closer and from the journal reflection prompt; replaced with concrete language ("pick one specific line you executed but couldn't have written from scratch")
+
 ### v1.0.0
 - Initial release
 
@@ -35,5 +41,43 @@ Versions follow `major.minor.patch`. Default bump is **patch** (typos, wording, 
 
 ## day4.md
 
+### v1.1.0 — 2026-05-04
+- Friday review checklist no longer references "things that still feel like magic"; uses "lines or concepts you couldn't explain from scratch"
+
 ### v1.0.0
 - Initial release
+
+---
+
+## day5.md
+
+### v1.0.0 — 2026-05-04
+- Initial release: catch-up on Week 1 leftovers; first Claude session with Rule 1 (explain, not write) and Rule 2 (run everything yourself)
+
+---
+
+## day6.md
+
+### v1.0.0 — 2026-05-04
+- Initial release: functions and dictionaries; refactor `fetch_many.py` to extract `fetch_one(url)`
+
+---
+
+## day7.md
+
+### v1.0.0 — 2026-05-04
+- Initial release: foundations day — HTTP layers, response anatomy, status codes, Python types, mini-quiz (no AI, no Google)
+
+---
+
+## day8.md
+
+### v1.0.0 — 2026-05-04
+- Initial release: richer HTML parsing — meta description, og:title, h1, canonical URL; consistent record shape; tightened Claude rule
+
+---
+
+## day9.md
+
+### v1.0.0 — 2026-05-04
+- Initial release: CSV output via DictWriter; sorted results; Week 2 mentor review with Claude-judging twist

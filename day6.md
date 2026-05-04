@@ -1,0 +1,175 @@
+# Day 6 — Functions and Dictionaries
+*v1.0.0*
+
+**Goal for today:** refactor `fetch_many.py` so the work happens inside a function called `fetch_one(url)` that returns a dictionary. Internalize what a function and a dictionary actually are — these are the two abstractions you'll use most often for the rest of the course.
+
+**Time budget:** ~90 min hands-on, ~15 min journal, ~15 min slack.
+
+---
+
+## 1. Warm-up (~5 min)
+
+Activate venv. `git status` clean. Run `python3 fetch_many.py` once to confirm it still works.
+
+## 2. You've been calling functions all week (~10 min)
+
+Every time you wrote `print(...)`, `len(brands)`, `requests.get(url)`, or `int(number)` — you called a function. A function is a named, reusable piece of code that takes inputs and (often) returns an output.
+
+In `scratch.py`, write your first one:
+
+```python
+def greet(name):
+    return "hello, " + name
+
+print(greet("Tyler"))
+print(greet("Vincent"))
+```
+
+Run it. The shape: `def name(parameters):` then an indented body, then `return` for the output. Calling `greet("Tyler")` runs the body with `name` set to `"Tyler"` and gives back the return value.
+
+Try a second one:
+
+```python
+def double(n):
+    return n * 2
+
+print(double(5))
+print(double(double(5)))
+```
+
+`double(double(5))` runs `double(5)` first, gets `10`, then calls `double(10)`. Functions compose.
+
+## 3. Why functions exist (~5 min)
+
+Two reasons that matter today:
+
+1. **Reuse.** If the same code runs in two places, change it once instead of twice. Your `fetch_many.py` has fetch + parse logic that could be reused tomorrow with a different driver — a single URL from the command line, or a list from a CSV.
+2. **Clarity.** A well-named function turns a 12-line block into a single line of intent: `record = fetch_one(url)`. Reading the loop becomes obvious; the messy details are tucked away.
+
+## 4. The plan: refactor `fetch_many.py` (~30 min)
+
+Open `fetch_many.py`. Right now your for loop has the fetch + parse + record-building all inline. Pull it out into a function.
+
+The shape you're aiming for:
+
+```python
+import requests
+from bs4 import BeautifulSoup
+from datetime import datetime
+import json
+
+
+def fetch_one(url):
+    record = {
+        "url": url,
+        "fetched_at": datetime.now().isoformat(),
+        "status": None,
+        "title": None,
+        "error": None,
+    }
+    try:
+        response = requests.get(url, timeout=10)
+        soup = BeautifulSoup(response.text, "html.parser")
+        record["status"] = response.status_code
+        record["title"] = soup.title.string.strip() if soup.title else "(no title)"
+    except Exception as e:
+        record["error"] = str(e)
+    return record
+
+
+with open("urls.txt") as f:
+    urls = [line.strip() for line in f if line.strip()]
+
+print(f"loaded {len(urls)} urls")
+
+results = []
+for url in urls:
+    print(f"fetching {url}...")
+    record = fetch_one(url)
+    if record["error"]:
+        print(f"  -> FAILED: {record['error']}")
+    else:
+        print(f"  -> {record['title']}")
+    results.append(record)
+
+with open("results.json", "w") as f:
+    for r in results:
+        f.write(json.dumps(r) + "\n")
+
+successes = sum(1 for r in results if not r["error"])
+failures = len(results) - successes
+print(f"\ndone. {successes} succeeded, {failures} failed.")
+```
+
+Don't paste this whole block. Type the function yourself; the for loop section can be adapted from your existing code. Run after each meaningful change.
+
+Things worth noticing:
+
+- The function has one input (`url`) and one output (`record`). Everything it needs is passed in; everything it produces comes out. That's a clean function.
+- The for loop is now four lines of intent: fetch, log, append. Readable.
+- `sum(1 for r in results if not r["error"])` is a one-line counter — equivalent to a for loop with a counter, written compactly. Recognize it; don't worry about writing your own yet.
+
+## 5. Dictionaries — the formal pass (~15 min)
+
+The `record` you've been building is a **dictionary** (or "dict"). A dict maps keys to values. You access values by key, not by position.
+
+In `scratch.py`:
+
+```python
+brand = {
+    "name": "Innisfree",
+    "country": "South Korea",
+    "founded": 2000,
+}
+
+print(brand["name"])
+print(brand.get("name"))
+print(brand.get("ceo"))             # not there — returns None
+print(brand.get("ceo", "unknown"))  # default
+
+brand["ceo"] = "Suh Kyung-bae"
+print(brand)
+
+for key, value in brand.items():
+    print(key, "->", value)
+```
+
+Run. Notice:
+
+- `brand["name"]` and `brand.get("name")` both work, but `.get` is forgiving — it returns `None` (or your default) if the key is missing, while `brand["ceo"]` would raise `KeyError`.
+- You can add keys after the fact: `brand["ceo"] = ...`
+- `.items()` lets you loop over key/value pairs.
+
+This is the same shape as JSON. The `json.dumps(record)` in your script is converting a Python dict to a JSON string. Same data, different format.
+
+## 6. Use Claude only if stuck (~5 min)
+
+If your refactor isn't working, paste your code and the error into Claude. Ask:
+
+> Here's my code. It's giving me [error]. Can you tell me which line is wrong and why — but don't rewrite the function for me?
+
+That phrasing matters. The "don't rewrite" tells Claude to point, not solve. You do the fix.
+
+## 7. Commit & push (~5 min)
+
+```
+git status
+git add fetch_many.py
+git commit -m "refactor fetch_many: extract fetch_one(url) function"
+git push
+```
+
+## 8. Journal (~15 min)
+
+`journal/day6.md`. Use the Day 5 structure (What I did / What I learned / What I don't fully understand / Claude check-in). Add one extra question at the bottom:
+
+> If a friend asked you "what's the difference between a list and a dict?" — answer in 2 sentences, no AI.
+
+---
+
+## What "done" looks like for Day 6
+
+- `fetch_many.py` has a `fetch_one(url)` function that takes a URL and returns a dict
+- The script still produces the same `results.json` output as before
+- You can describe in your own words what a function takes in and gives out
+- You can describe in your own words how a dict differs from a list

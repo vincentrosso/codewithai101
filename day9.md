@@ -1,0 +1,153 @@
+# Day 9 — CSV Output and Friday Review
+*v1.0.0*
+
+**Goal for today:** save your results as a CSV file so you can open them in a spreadsheet, then prep for the Week 2 mentor review. By the end of the day, you have a tool that takes a URL list and produces a sortable spreadsheet of brand metadata.
+
+**Time budget:** ~75 min hands-on, ~30 min review prep, ~15 min journal.
+
+---
+
+## 1. Warm-up (~5 min)
+
+Activate venv. Run `python3 fetch_many.py`. Confirm `results.json` has rich records (nine keys per row from yesterday).
+
+## 2. Why CSV (~5 min)
+
+JSONL is great for code; CSV is great for humans. CSV opens in Numbers, Excel, or Google Sheets. For Brand Lens, the eventual user might be someone who wants to *look at the data* without running Python — that's a spreadsheet user. Today you give them that.
+
+## 3. Add a `save_csv` function (~25 min)
+
+In `fetch_many.py`, at the top with your other imports:
+
+```python
+import csv
+```
+
+After the for loop — alongside the existing JSON write — add:
+
+```python
+def save_csv(records, filename):
+    if not records:
+        return
+    keys = list(records[0].keys())
+    with open(filename, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=keys)
+        writer.writeheader()
+        for r in records:
+            writer.writerow(r)
+
+
+save_csv(results, "results.csv")
+```
+
+A few things worth noticing:
+
+- `csv.DictWriter` takes a list of fieldnames (the column headers) and writes one row per dict. It expects every dict to have the same keys — which is why you initialized all fields to `None` yesterday. Past-you set up future-you. That's good engineering.
+- `newline=""` is a Python-on-Windows quirk that prevents extra blank lines. Always include it for CSV writes.
+- The function returns early if `records` is empty — a small guard that prevents crashes in edge cases.
+
+Run the script. You should see `results.csv` appear. Open it: `open results.csv` (Mac picks the default app — usually Numbers).
+
+## 4. Sort the results before saving (~15 min)
+
+A flat alphabetical list isn't useful. Let's sort: successful records first, then alphabetically by title within each group.
+
+Before the `save_csv` call:
+
+```python
+results.sort(key=lambda r: (r["error"] is not None, (r["title"] or "").lower()))
+```
+
+That's a lot in one line. Read it left to right:
+
+- `results.sort(...)` sorts the list in place.
+- `key=lambda r: ...` is a tiny anonymous function that takes one record and returns the value to sort by.
+- The value is a tuple `(r["error"] is not None, (r["title"] or "").lower())`. Python sorts tuples element by element: first by whether there was an error (False < True, so successes come first), then by title lowercased (so "Innisfree" sorts next to "innisfree").
+
+Don't memorize this; recognize it. When you see `lambda` again it's the same pattern: an inline function used once.
+
+Run the script and open `results.csv` again. Successes are at the top, errors at the bottom, alphabetical inside each group.
+
+## 5. Add `results.csv` to .gitignore (~2 min)
+
+It's data, not code. Open `.gitignore`, add:
+
+```
+results.csv
+```
+
+Save.
+
+## 6. Commit & push (~5 min)
+
+```
+git status
+git add fetch_many.py .gitignore
+git commit -m "save results as sorted csv"
+git push
+```
+
+## 7. Mentor review prep (~30 min)
+
+Friday review with Vincent is a 30-minute session. Two things change from Week 1:
+
+**Same as Week 1:**
+- Walk through your code from memory
+- Vincent introduces a bug live; you debug it without AI
+
+**New for Week 2:**
+- You'll demo Claude in front of Vincent. Pick one snippet from your code and ask Claude to explain it. Vincent may ask "is that explanation right?" — your job is to spot if Claude is wrong, vague, or missing something. (Vincent may prompt Claude in a way that nudges it toward a wrong answer; that's the test.)
+
+Prep checklist — do each before the session:
+
+1. From a blank terminal, can you go from "I just opened my laptop" to "the script runs end-to-end"? List the exact commands you'd type. (Hint: it starts with `cd` and includes `source`.)
+2. Walk through `fetch_one()` line by line, in your head. Where would you struggle to explain?
+3. Open your Day 7 quiz answers. Are any of them shaky? Look up the answer (no AI, just MDN or docs) and rewrite the journal entry.
+4. Pick the one line of your code you'd be most embarrassed not to be able to explain. Ask Claude to explain it. Read the explanation. Decide whether it's right.
+
+## 8. Journal — Week 2 retrospective (~15 min)
+
+`journal/day9.md`. Use these questions instead of the usual structure:
+
+```
+## What I did this week
+(short list of the five days)
+
+## How is my work different now than at the end of Week 1?
+(2–3 sentences)
+
+## What I don't fully understand
+(specific lines or concepts, not "the whole thing")
+
+## How I used Claude this week
+- Did I follow Rule 1 (explain, not write)?
+- Did I follow Rule 2 (run everything myself)?
+- One time Claude was helpful, one time it wasn't.
+
+## How fetch_many.py connects to Brand Lens
+You skipped this question on Day 4. Answer it now.
+```
+
+---
+
+## What "done" looks like for Day 9
+
+- `results.csv` is generated by `fetch_many.py`, opens in a spreadsheet, sorted with successes first
+- The repo is pushed; `results.csv` is gitignored
+- A Day 9 journal exists with the Week 2 retrospective
+- You can run the full pipeline from a clean terminal in under 60 seconds
+
+---
+
+## What "done" looks like for Week 2 (Friday review with Vincent)
+
+From a blank terminal, you should be able to:
+
+1. Activate the venv and explain what activation does
+2. Run `fetch_many.py` and walk through `fetch_one()` line by line
+3. Show your `results.csv` and explain how the sort key works
+4. Read a deliberately-broken version of your code and find the bug without AI
+5. Use Claude on a snippet, in front of Vincent, and judge whether its explanation is correct
+
+If 1–3 are solid but 4–5 are shaky: you're on track for Week 3.
+If 1–3 are shaky: Week 3 starts with another foundations day.

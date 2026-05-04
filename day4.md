@@ -1,5 +1,5 @@
 # Day 4 — Loops, Lists, and a Script That Fetches Many Pages
-*v1.0.0*
+*v1.1.0*
 
 **Goal for today:** turn yesterday's one-URL-at-a-time script into something that processes a list of URLs in a loop, handles errors gracefully, and produces a clean dataset. By end of day, you have a tiny but real research tool — you give it a list of brand websites, it gives you back a structured file of titles and metadata.
 
@@ -273,7 +273,7 @@ This is the calibration moment. From a blank terminal, you should be able to:
 2. Show your GitHub repo and walk through your commit history
 3. Run `fetch_many.py` and explain what each part does — including `try/except`, the for loop, and the JSON output
 4. Read a deliberately-broken version of your own code (Vincent introduces a typo or bug live) and identify what's wrong without AI help
-5. List, from your journal, the three things that still feel like magic — these become Week 2's targets
+5. List, from your journal, the three lines or concepts you couldn't explain from scratch — these become Week 2's targets
 
 If 1–3 are solid but 4–5 are shaky: you're on track, Week 2 starts on schedule.
 If 1–3 are shaky: Week 2 starts with a redo of Days 3–4 and the schedule slides by a few days. That's fine and expected.

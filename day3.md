@@ -1,5 +1,5 @@
 # Day 3 — First Real Script: Fetching a Webpage
-*v1.0.0*
+*v1.1.0*
 
 **Goal for today:** write a Python script that takes a URL, fetches the page, extracts the title, and saves it to a file. This is the seed of the capstone — every week's project grows from this.
 
@@ -91,7 +91,7 @@ Save. In Ghostty (with venv active):
 python3 fetch.py
 ```
 
-You should see `status code: 200` and the first 500 characters of example.com's HTML. **Pause here.** You just made your computer reach out across the internet, ask a server for a webpage, and read the response. This is what every browser, every app, every API call is doing under the hood. It's not magic — it's `requests.get()`.
+You should see `status code: 200` and the first 500 characters of example.com's HTML. **Pause here.** You just made your computer reach out across the internet, ask a server for a webpage, and read the response. This is what every browser, every app, every API call is doing under the hood. It's not mysterious — it's `requests.get()`.
 
 Now break it deliberately and see what happens. Try each, run, observe the error, then fix:
 
@@ -197,7 +197,7 @@ Then commit the gitignore update separately. (If you accidentally committed `res
 - In your own words, what does a virtual environment do and why does it exist?
 - When you ran `requests.get(url)`, what actually happened on the network? (Best guess.)
 - What's the difference between `response.text` and `soup.title.string`?
-- What in today's lesson felt like magic? (Be specific — naming the magic is the first step to dispelling it.)
+- Pick one specific line from `fetch.py` that you executed but couldn't have written from scratch. Name the line and what part you can't explain.
 
 ---
 

@@ -1,0 +1,159 @@
+# Day 5 — Catch Up, Then Meet Claude
+*v1.0.0*
+
+**Goal for today:** finish anything you didn't get to in Day 3 or Day 4, then add a Claude assistant to your toolbox — but on a tight leash.
+
+**Time budget:** ~90 min hands-on, ~15 min journal, ~15 min slack.
+
+---
+
+## About AI tools — what changes today
+
+Week 1 was deliberately AI-free so you'd build the muscle of reading errors and code yourself. That muscle is real now. From here on you'll work alongside Claude, but with rules that protect what you just built. Two rules to start, and they matter:
+
+**Rule 1: Ask Claude to explain, not to write.** Paste your own code with a question like "what does this line do?" or "why am I getting this error?" Don't paste an empty prompt like "write me a script that fetches a URL." If Claude writes the code, you don't learn it — and you can't catch it when it's wrong.
+
+**Rule 2: Run everything yourself.** Claude can't run code; you can. Every line Claude suggests, you type into your own editor and run in your own terminal. If you can't run it, don't ship it.
+
+You'll relax these rules as your judgment improves. Today, hold them tight.
+
+---
+
+## 1. Warm-up & honest check-in (~10 min)
+
+Activate the venv. Run `git log` — you should see your Week 1 commits. Open your Day 3 and Day 4 journals: `subl ~/dev/brand-lens/journal/`.
+
+Be honest with yourself: did you finish Day 3 and Day 4 all the way through? If `fetch.py` doesn't extract the title with BeautifulSoup, or `fetch_many.py` doesn't have try/except + JSON write, you've got catch-up to do. The next two sections are your catch-up. If you finished, skim them as review and move on.
+
+## 2. Catch-up: Day 3 — title and JSON write (~20 min, skip if done)
+
+If `fetch.py` only does `requests.get` and prints HTML, finish it. With venv active:
+
+```
+pip install beautifulsoup4
+```
+
+Update `fetch.py`:
+
+```python
+import requests
+from bs4 import BeautifulSoup
+import json
+from datetime import datetime
+
+url = input("URL to fetch: ")
+response = requests.get(url)
+
+soup = BeautifulSoup(response.text, "html.parser")
+title = soup.title.string if soup.title else "(no title)"
+
+result = {
+    "url": url,
+    "title": title,
+    "fetched_at": datetime.now().isoformat(),
+}
+
+with open("results.json", "a") as f:
+    f.write(json.dumps(result) + "\n")
+
+print("saved:", result)
+```
+
+Run it three times with three different URLs. Confirm `results.json` has three lines. If `results.json` isn't already in `.gitignore`, add it now.
+
+## 3. Catch-up: Day 4 — fetch_many.py (~20 min, skip if done)
+
+If `fetch_many.py` doesn't handle errors, go back to day4.md section 4 step C and add the try/except block. The script should run against `urls.txt`, never crash on a bad URL, and produce `results.json` with one record per URL — including the failed ones.
+
+Commit any catch-up work before moving on:
+
+```
+git add fetch.py fetch_many.py
+git commit -m "finish week 1 catch-up: title extraction and error handling"
+git push
+```
+
+## 4. Meet Claude (~10 min)
+
+Open a new browser tab and go to **claude.ai**. Sign up with your email. You're in the chat interface — a prompt box at the bottom, conversation above. This is the same Claude you might know from elsewhere; here it's a tab that lives next to your terminal.
+
+Reread Rules 1 and 2 above before continuing.
+
+## 5. First exercise — fix a Week 1 misconception (~15 min)
+
+Open your Day 3 journal. Find your answer to "what's the difference between `response.text` and `soup.title.string`?" Don't change it yet.
+
+Now ask Claude (paste this exactly):
+
+> I'm two weeks into Python. In this code:
+>
+> ```python
+> response = requests.get("https://example.com")
+> soup = BeautifulSoup(response.text, "html.parser")
+> title = soup.title.string
+> ```
+>
+> Explain in plain language what `response.text` contains, and what `soup.title.string` contains. Be specific about the difference.
+
+Read Claude's answer. Compare it to what you wrote in your journal. **In your Day 5 journal, write down what you got wrong (if anything), and what you now understand differently.**
+
+This is the new pattern: write your understanding *first*, then check. Claude is a calibration partner, not a substitute for thinking.
+
+## 6. Second exercise — pick a line you don't understand (~15 min)
+
+Open `fetch_many.py` in Sublime. Find one line you wrote (or copied) but can't fully explain. Good candidates:
+
+- `urls = [line.strip() for line in f if line.strip()]`
+- `with open("urls.txt") as f:`
+- `try:` ... `except Exception as e:`
+- `record["error"] = str(e)`
+
+Paste your whole script into Claude and ask:
+
+> In this script, can you explain what the line `<paste the line>` does, step by step? Treat me like someone who's two weeks into Python.
+
+Read carefully. If Claude uses a word you don't know ("list comprehension," "context manager," "exception object"), ask a follow-up: "what is a [word] — give me a 2-line definition with an example."
+
+Save the explanation in your journal. You'll come back to it.
+
+## 7. Commit & push (~5 min)
+
+```
+git status
+git add journal/
+git commit -m "day 5 journal: first claude session"
+git push
+```
+
+## 8. Journal (~15 min)
+
+`journal/day5.md`. Use this structure from now on:
+
+```
+# Day 5
+
+## What I did
+(short list, bullet points are fine)
+
+## What I learned
+(in your own words, 3–5 sentences — not a transcript of the lesson)
+
+## What I don't fully understand
+Pick one or two specific things from today — a command, a line of code, an error — that you executed correctly but couldn't have written from scratch or explained to someone else. Name the actual line, not the general topic.
+
+## Claude check-in
+- What did I get wrong about `response.text` and `soup.title.string`?
+- One thing Claude explained well, and one thing I had to ask a follow-up about.
+- Did I break either Rule 1 or Rule 2 today?
+```
+
+That last bullet matters. Honesty about how you used Claude is more important than the answers themselves. Vincent will ask.
+
+---
+
+## What "done" looks like for Day 5
+
+- `fetch.py` extracts a title and writes JSON; `fetch_many.py` handles errors with try/except (catch-up done if needed)
+- A claude.ai account exists and you used it twice today
+- Day 5 journal includes a "Claude check-in" section
+- You can name one specific thing you got wrong in a Week 1 journal answer

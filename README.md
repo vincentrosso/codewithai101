@@ -20,6 +20,18 @@ Week 1 is intentionally **AI-free**. The goal is to build the muscle that lets t
 | [Day 3](day3.md) | Virtual environments, pip, `requests`, BeautifulSoup, fetching a webpage, saving to JSON |
 | [Day 4](day4.md) | Lists, for loops, `try`/`except`, batch processing — the seed of the capstone |
 
+## Week 2
+
+Claude (browser, claude.ai) comes online — under two strict rules: ask Claude to *explain*, never to *write*; run everything yourself. The week includes a foundations day mid-week to formalize the mental model behind Week 1's patterns.
+
+| Day | Focus |
+|-----|-------|
+| [Day 5](day5.md) | Catch up on Week 1 leftovers; first Claude session with strict rules |
+| [Day 6](day6.md) | Functions and dictionaries; refactor `fetch_many.py` into `fetch_one(url)` |
+| [Day 7](day7.md) | Foundations: HTTP, types, status codes — no code, mini-quiz, no AI |
+| [Day 8](day8.md) | Richer parsing: meta description, og:title, h1, canonical URL |
+| [Day 9](day9.md) | CSV output, sorting; mentor review with a Claude-judging twist |
+
 ## Friday review
 
-The week ends with a 30-minute mentor session. The learner demos the work, walks through specific lines of code, and debugs a deliberately-broken version live (no AI).
+The week ends with a 30-minute mentor session. The learner demos the work, walks through specific lines of code, and debugs a deliberately-broken version live (no AI). Starting Week 2, the learner also demos Claude on a snippet and judges whether the explanation is correct.

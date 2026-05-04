@@ -1,5 +1,5 @@
 # Day 1 — Setup & First Contact
-*v1.1.0*
+*v1.2.0*
 
 **Goal for today:** by the end of two hours, you have a working development environment, a GitHub account, and you've written and run your first Python program. Nothing fancy — just the toolchain working end to end and you knowing where everything lives.
 
@@ -136,11 +136,11 @@ In Sublime, create a new file and save it as `~/dev/brand-lens/journal/day1.md`.
 ## What I learned
 (in your own words)
 
-## What confused me or felt magical
-(this is the most important section — be honest)
+## What I don't fully understand
+(name specific commands or lines — this is the most important section)
 ```
 
-Don't skip the "confused me" section. If a command worked but you don't know why, that's a "confused me." If you typed `python3 hello.py` and a message appeared and it felt like sorcery, write that down. Vincent uses this to know what to dig into during our review.
+Don't skip this section. If a command worked but you can't explain why, name the specific command and what part you can't explain. Specific beats general: "I don't get why `ls -la` shows files starting with a dot" is useful; "the whole terminal thing" is not. Vincent uses this to know what to dig into during our review.
 
 ---
 

@@ -34,4 +34,4 @@ Business background, no prior coding experience. Explanations should avoid assum
 
 ## Lesson Format
 
-Each `dayN.md` follows a consistent structure: goal + time budget → numbered sections with inline terminal commands → commit checkpoint → journal prompt → "what done looks like" checklist. Maintain this structure when adding new days. Journal prompts should ask for genuine reflection ("what still feels like magic"), not just factual recall.
+Each `dayN.md` follows a consistent structure: goal + time budget → numbered sections with inline terminal commands → commit checkpoint → journal prompt → "what done looks like" checklist. Maintain this structure when adding new days. Journal prompts should ask for genuine reflection — name specific lines or concepts the learner can't yet explain — not just factual recall. Avoid vague framings like "what felt magical."
