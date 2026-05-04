@@ -55,6 +55,15 @@ Anthropic API enters the codebase. Tyler stops using Claude in a browser tab and
 ### Week 6 — From tool to brief (MVP, mid-course)
 Combine fetched data and LLM summaries into per-brand markdown briefs using `jinja2` templates. Generate a `briefs/` directory with one file per brand. Foundations day on project structure, `requirements.txt`, `README.md`, and a basic GitHub Actions CI step that runs the script on push. Friday is the mid-course retrospective — Brand Lens MVP demo and a look back at the first six weeks before the curriculum hands off to harder topics.
 
+## Sidelines
+
+Reference material outside the day-by-day flow. Read when curious; not paced.
+
+| File | Topic |
+|------|-------|
+| [BeautifulSoup](sidelines/beautifulsoup.md) | What it is, the tree mental model, the methods you'll actually use, common pitfalls, quick reference |
+| [Modules and modularity](sidelines/modules-and-modularity.md) | How Python's `import` works, where pip puts things, and the design principle of splitting code into pieces |
+
 ## Friday review
 
 The week ends with a 30-minute mentor session. The learner demos the work, walks through specific lines of code, and debugs a deliberately-broken version live (no AI). Starting Week 2, the learner also demos Claude on a snippet and judges whether the explanation is correct.

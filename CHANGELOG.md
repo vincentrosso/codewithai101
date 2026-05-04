@@ -116,3 +116,17 @@ Versions follow `major.minor.patch`. Default bump is **patch** (typos, wording, 
 
 ### v1.0.0 — 2026-05-04
 - Initial release: Week 3 mentor review — pipeline demo, bug hunt, Claude judgment, retrospective journal
+
+---
+
+## sidelines/beautifulsoup.md
+
+### v1.0.0 — 2026-05-04
+- Initial release: reference for BeautifulSoup — the tree mental model, vocabulary (Tag, NavigableString, attributes, selectors), the methods Tyler will actually use, parser choices, common pitfalls, quick reference. Cross-links to modules-and-modularity.md.
+
+---
+
+## sidelines/modules-and-modularity.md
+
+### v1.0.0 — 2026-05-04
+- Initial release: how Python's import system works (sys.path, sys.modules, what pip install actually does, your modules vs library modules) plus the design principle of modularity (clear boundaries, replaceability, testability, examples beyond Python). Cross-links to beautifulsoup.md.
