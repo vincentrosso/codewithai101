@@ -15,10 +15,10 @@ Week 1 is intentionally **AI-free**. The goal is to build the muscle that lets t
 
 | Day | Focus |
 |-----|-------|
-| [Day 1](day1.md) | Toolchain setup: Sublime, Ghostty, Spotlight, terminal basics, GitHub account, first `hello.py` |
-| [Day 2](day2.md) | Homebrew + modern Python, git config, SSH to GitHub, first repo, interactive Python |
-| [Day 3](day3.md) | Virtual environments, pip, `requests`, BeautifulSoup, fetching a webpage, saving to JSON |
-| [Day 4](day4.md) | Lists, for loops, `try`/`except`, batch processing — the seed of the capstone |
+| [Week 1, Day 1](W1D1.md) | Toolchain setup: Sublime, Ghostty, Spotlight, terminal basics, GitHub account, first `hello.py` |
+| [Week 1, Day 2](W1D2.md) | Homebrew + modern Python, git config, SSH to GitHub, first repo, interactive Python |
+| [Week 1, Day 3](W1D3.md) | Virtual environments, pip, `requests`, BeautifulSoup, fetching a webpage, saving to JSON |
+| [Week 1, Day 4](W1D4.md) | Lists, for loops, `try`/`except`, batch processing — the seed of the capstone |
 
 ## Week 2
 
@@ -26,11 +26,11 @@ Claude (browser, claude.ai) comes online — under two strict rules: ask Claude 
 
 | Day | Focus |
 |-----|-------|
-| [Day 5](day5.md) | Catch up on Week 1 leftovers; first Claude session with strict rules |
-| [Day 6](day6.md) | Functions and dictionaries; refactor `fetch_many.py` into `fetch_one(url)` |
-| [Day 7](day7.md) | Foundations: HTTP, types, status codes — no code, mini-quiz, no AI |
-| [Day 8](day8.md) | Richer parsing: meta description, og:title, h1, canonical URL |
-| [Day 9](day9.md) | CSV output, sorting; mentor review with a Claude-judging twist |
+| [Week 2, Day 1](W2D1.md) | Catch up on Week 1 leftovers; first Claude session with strict rules |
+| [Week 2, Day 2](W2D2.md) | Functions and dictionaries; refactor `fetch_many.py` into `fetch_one(url)` |
+| [Week 2, Day 3](W2D3.md) | Foundations: HTTP, types, status codes — no code, mini-quiz, no AI |
+| [Week 2, Day 4](W2D4.md) | Richer parsing: meta description, og:title, h1, canonical URL |
+| [Week 2, Day 5](W2D5.md) | CSV output, sorting; mentor review with a Claude-judging twist |
 
 ## Week 3
 
@@ -38,11 +38,11 @@ Move from a flat URL list to a structured `brands.yaml` config; split the script
 
 | Day | Focus |
 |-----|-------|
-| [Day 10](day10.md) | YAML config: `brands.yaml` with brand → pages; aggregate results per brand |
-| [Day 11](day11.md) | Modules: split into `fetch.py`, `parse.py`, `runner.py`; `__name__ == "__main__"` |
-| [Day 12](day12.md) | Foundations: file I/O, paths, encodings — no code, no AI, mini-quiz |
-| [Day 13](day13.md) | Real CLI: `argparse` with `--input`, `--output`, `--limit`, `--csv`; flat CSV returns |
-| [Day 14](day14.md) | Mentor review — brand-level pipeline demo and bug hunt |
+| [Week 3, Day 1](W3D1.md) | YAML config: `brands.yaml` with brand → pages; aggregate results per brand |
+| [Week 3, Day 2](W3D2.md) | Modules: split into `fetch.py`, `parse.py`, `runner.py`; `__name__ == "__main__"` |
+| [Week 3, Day 3](W3D3.md) | Foundations: file I/O, paths, encodings — no code, no AI, mini-quiz |
+| [Week 3, Day 4](W3D4.md) | Real CLI: `argparse` with `--input`, `--output`, `--limit`, `--csv`; flat CSV returns |
+| [Week 3, Day 5](W3D5.md) | Mentor review — brand-level pipeline demo and bug hunt |
 
 ## Weeks 4–6 (sketches — subject to change)
 
