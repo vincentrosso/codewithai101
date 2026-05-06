@@ -63,6 +63,7 @@ Reference material outside the day-by-day flow. Read when curious; not paced.
 |------|-------|
 | [BeautifulSoup](sidelines/beautifulsoup.md) | What it is, the tree mental model, the methods you'll actually use, common pitfalls, quick reference |
 | [Modules and modularity](sidelines/modules-and-modularity.md) | How Python's `import` works, where pip puts things, and the design principle of splitting code into pieces |
+| [Assembly and the stack of abstractions](sidelines/assembly.md) | Punch cards to LLMs — what's actually underneath your Python, why we stopped writing assembly, why it still matters |
 
 ## Friday review
 
