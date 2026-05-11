@@ -44,16 +44,39 @@ Move from a flat URL list to a structured `brands.yaml` config; split the script
 | [Week 3, Day 4](W3D4.md) | Real CLI: `argparse` with `--input`, `--output`, `--limit`, `--csv`; flat CSV returns |
 | [Week 3, Day 5](W3D5.md) | Mentor review — brand-level pipeline demo and bug hunt |
 
-## Weeks 4–6 (sketches — subject to change)
+## Week 4
 
-### Week 4 — Persisting and querying
-Move from CSV/JSON files to **SQLite** (built into Python, no install). Create `brands` and `fetches` tables. Learn raw SQL: `SELECT`, `WHERE`, `JOIN`, `GROUP BY` — no ORM. Foundations day on relational thinking and primary keys. By Friday, the pipeline writes to a database and you can answer "how many brands have a meta description?" with a single SQL query.
+Tyler graduates from Claude in a browser tab to **Claude Code** — the same Claude, but running in the terminal with read access to the brand-lens repo, the ability to edit files, and the ability to run commands. The leap is bigger than Week 2's, so the rules tighten rather than loosen: review every diff before accepting; never auto-approve a command you can't explain; if Claude Code edits a line you don't fully understand, ask it to explain that line *before* you commit. Foundations day on diffs. No Vincent session this Friday — instead, Tyler writes a list of specific questions he can't answer yet about Claude Code or his own code.
 
-### Week 5 — First LLM calls
-Anthropic API enters the codebase. Tyler stops using Claude in a browser tab and starts calling it directly from Python with the official SDK. Topics: API keys, `.env` files, structured-output prompts (get JSON back, not prose). Foundations day on what an API actually is, authentication, and rate limits. By Friday, the pipeline fetches pages and produces an LLM-generated brand summary per brand.
+| Day | Focus |
+|-----|-------|
+| [Week 4, Day 1](W4D1.md) | Install Claude Code; first session; new rules; read-only tour |
+| [Week 4, Day 2](W4D2.md) | Claude Code as a mirror — explain `runner.py`, `fetch.py`, `parse.py` |
+| [Week 4, Day 3](W4D3.md) | Foundations: reading diffs — no code, no AI, mini-quiz |
+| [Week 4, Day 4](W4D4.md) | First reviewed edit: add `--brand` flag to `runner.py` |
+| [Week 4, Day 5](W4D5.md) | Questions you can't answer yet — list, categorize, retrospective |
 
-### Week 6 — From tool to brief (MVP, mid-course)
-Combine fetched data and LLM summaries into per-brand markdown briefs using `jinja2` templates. Generate a `briefs/` directory with one file per brand. Foundations day on project structure, `requirements.txt`, `README.md`, and a basic GitHub Actions CI step that runs the script on push. Friday is the mid-course retrospective — Brand Lens MVP demo and a look back at the first six weeks before the curriculum hands off to harder topics.
+## Week 5
+
+Tests enter the project. With Claude Code now editing real files, Tyler needs a safety net that runs in under a second and tells him exactly when a behavior broke. The week walks from a first `pytest` test against `parse_page`, through fixtures and the test-pyramid mental model, to mocking `requests.get` so `fetch.py` can be tested without the live internet. Friday returns to the normal mentor review format — Vincent introduces a small break and the suite has to catch it.
+
+| Day | Focus |
+|-----|-------|
+| [Week 5, Day 1](W5D1.md) | First `pytest` test, AAA shape, green → red → green cycle |
+| [Week 5, Day 2](W5D2.md) | Edge cases, `conftest.py`, `@pytest.fixture` for shared setup |
+| [Week 5, Day 3](W5D3.md) | Foundations: units, pure vs side-effectful, test pyramid — no code, no AI, mini-quiz |
+| [Week 5, Day 4](W5D4.md) | Mocking the network: `monkeypatch` + a fake response, happy path and error path |
+| [Week 5, Day 5](W5D5.md) | Mentor review — break-and-catch, judging a Claude-written test, Week 5 retrospective |
+
+## Future course ideas
+
+Weeks 6 and beyond are open. Candidate topics, in no particular order — order, scope, and inclusion are all subject to change:
+
+- **Persisting and querying with SQLite.** Move from CSV/JSON files to SQLite (built into Python, no install). Create `brands` and `fetches` tables. Learn raw SQL: `SELECT`, `WHERE`, `JOIN`, `GROUP BY` — no ORM. Foundations on relational thinking and primary keys. End state: pipeline writes to a database; "how many brands have a meta description?" is a one-line query.
+
+- **First LLM calls from Python.** Bring Claude into the brand-lens codebase as a library, not just a tool you talk to. Anthropic SDK, API keys, `.env` files, structured-output prompts (get JSON back, not prose). Foundations on what an API actually is, authentication, rate limits. End state: pipeline produces an LLM-generated brand summary per brand.
+
+- **From tool to brief — MVP.** Combine fetched data and LLM summaries into per-brand markdown briefs using `jinja2` templates. Generate a `briefs/` directory with one file per brand. Foundations on project structure, `requirements.txt`, README, basic GitHub Actions CI. The Brand Lens MVP demo.
 
 ## Sidelines
 

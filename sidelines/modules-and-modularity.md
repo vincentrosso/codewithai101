@@ -126,7 +126,7 @@ Three concrete payoffs:
 
 **Replaceability.** If you swap BeautifulSoup for `lxml` directly, only `parse.py` changes. `fetch.py` and `runner.py` don't know `parse.py` uses BeautifulSoup at all. The boundary protects them.
 
-**Testability.** You can test `parse_page(html, url)` by feeding it a hand-written HTML string. No network, no file I/O, no LLMs. The function is pure: same input, same output. Pure functions are the easiest things in programming to be sure are correct. (You'll see this on Day 8 of the testing week, much later.)
+**Testability.** You can test `parse_page(html, url)` by feeding it a hand-written HTML string. No network, no file I/O, no LLMs. The function is pure: same input, same output. Pure functions are the easiest things in programming to be sure are correct. (You'll see exactly this on [W5D1](../W5D1.md) — your first pytest test is against `parse_page` for this reason.)
 
 **Comprehension.** When you open a 200-line `fetch_many.py`, you have to understand 200 lines to understand any one of them. When you open a 30-line `parse.py`, you have to understand 30. Modular code is *kinder to your future self*.
 

@@ -119,6 +119,76 @@ Versions follow `major.minor.patch`. Default bump is **patch** (typos, wording, 
 
 ---
 
+## W4D1.md
+
+### v1.0.0 — 2026-05-08
+- Initial release: install Node + Claude Code via npm; three new rules (review every diff, never auto-approve a command, ask before committing unclear code); read-only tour of brand-lens; propose-and-reject diff exercise
+
+---
+
+## W4D2.md
+
+### v1.0.0 — 2026-05-08
+- Initial release: Claude Code as a calibration mirror — walk through `runner.py`, `fetch.py`, `parse.py` and compare against own understanding from W3D5 review prep; surface where Claude Code is reliable vs. confidently wrong
+
+---
+
+## W4D3.md
+
+### v1.0.0 — 2026-05-08
+- Initial release: foundations day on reading diffs — `git diff` output anatomy, hunk headers, staged vs unstaged, spotting a bad diff (scope creep, unexpected deletions, renames-without-call-site-updates); no-AI mini-quiz
+
+---
+
+## W4D4.md
+
+### v1.0.0 — 2026-05-08
+- Initial release: first reviewed Claude Code edit — write spec yourself, add `--brand` flag to `runner.py`, review every line of the proposed diff, push back on scope creep, write commit message yourself
+
+---
+
+## W4D5.md
+
+### v1.0.0 — 2026-05-08
+- Initial release: no mentor session — write a list of 10+ specific questions about Claude Code or own code, categorize each (`claude code` / `docs` / `vincent` / `later`); Week 4 retrospective journal
+
+---
+
+## W5D1.md
+
+### v1.0.0 — 2026-05-11
+- Initial release: install `pytest`, create `tests/` directory, first test against `parse_page` with hand-written HTML, AAA pattern (Arrange/Act/Assert), break the code on purpose to see red, fix to see green
+
+---
+
+## W5D2.md
+
+### v1.0.0 — 2026-05-11
+- Initial release: extend `tests/test_parse.py` with edge cases (missing title, missing description, multiple h1s, canonical extraction), introduce `tests/conftest.py` and `@pytest.fixture` for shared HTML setup, framing of "a test is a tiny spec"
+
+---
+
+## W5D3.md
+
+### v1.0.0 — 2026-05-11
+- Initial release: foundations day on testing — what counts as a "unit," pure vs side-effectful functions, the test pyramid (unit/integration/e2e), tests-as-spec, what to do when a test fails (fix code vs fix test), flaky tests; no-AI mini-quiz
+
+---
+
+## W5D4.md
+
+### v1.0.0 — 2026-05-11
+- Initial release: mocking the network — `monkeypatch` + a minimal `FakeResponse` class to substitute `requests.get`, test the happy path (status 200, html body), test the error path (`requests.RequestException` raises → `fetch_one` returns error tuple, proving the W1D4 `try/except` actually works)
+
+---
+
+## W5D5.md
+
+### v1.0.0 — 2026-05-11
+- Initial release: Friday mentor review returns to normal format — demo the test suite, break-and-catch exercise (Vincent introduces a small bug, suite must catch it or Tyler writes the test that would have), Claude-judging twist (ask Claude Code to write a test, judge behavior vs implementation), Week 5 retrospective journal
+
+---
+
 ## sidelines/beautifulsoup.md
 
 ### v1.0.0 — 2026-05-04
