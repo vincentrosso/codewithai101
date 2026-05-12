@@ -35,3 +35,11 @@ Business background, no prior coding experience. Explanations should avoid assum
 ## Lesson Format
 
 Each `WxDy.md` file (e.g. `W1D1.md`, `W3D5.md`) follows a consistent structure: goal + time budget → numbered sections with inline terminal commands → commit checkpoint → journal prompt → "what done looks like" checklist. Maintain this structure when adding new days. Journal prompts should ask for genuine reflection — name specific lines or concepts the learner can't yet explain — not just factual recall. Avoid vague framings like "what felt magical."
+
+### Required journal sections
+
+Every lesson day's journal prompt must include a section titled **"What I don't fully understand"** (or the equivalent **"A line I accepted but still don't fully grasp"** when the day involves accepting code from Claude Code). The prompt must ask for a *specific named line, function, or concept* — not a general "anything confusing?" question. This is the section that drives the next mentor session, the next lesson's recap, and any sidelines the learner needs.
+
+### The "Edit:" pattern — encourage, don't penalize
+
+When the learner predicts an outcome ("I think this will print an error"), runs the code, finds they were wrong, and edits the journal with the correction (`### Edit` or similar), that is the most valuable habit in the journal. Mini-quiz prompts and "predict the output" exercises should explicitly invite this: ask for a prediction *before* running, and tell the learner that updating the entry afterward — saying what they got wrong and why — is the point of the exercise, not a sign of failure. Friday review notes and lesson recaps should call out specific instances of this pattern by name when they appear in the learner's journal. The behavior is fragile early on; praise it directly so it sticks.

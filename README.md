@@ -74,7 +74,7 @@ Weeks 6 and beyond are open. Candidate topics, in no particular order — order,
 
 - **Persisting and querying with SQLite.** Move from CSV/JSON files to SQLite (built into Python, no install). Create `brands` and `fetches` tables. Learn raw SQL: `SELECT`, `WHERE`, `JOIN`, `GROUP BY` — no ORM. Foundations on relational thinking and primary keys. End state: pipeline writes to a database; "how many brands have a meta description?" is a one-line query.
 
-- **First LLM calls from Python.** Bring Claude into the brand-lens codebase as a library, not just a tool you talk to. Anthropic SDK, API keys, `.env` files, structured-output prompts (get JSON back, not prose). Foundations on what an API actually is, authentication, rate limits. End state: pipeline produces an LLM-generated brand summary per brand.
+- **First LLM calls from Python.** Bring Claude into the brand-lens codebase as a library, not just a tool you talk to. Anthropic SDK, API keys, `.env` files, structured-output prompts (get JSON back, not prose). Foundations on what an API actually is, authentication, rate limits. End state: pipeline produces an LLM-generated brand summary per brand. *Note when writing this week: circle back to the W2D4 fields (`description`, `og:title`, `canonical`, `h1`) and tie each one to a concrete brand-evaluation question the LLM is being asked to answer. Right now those fields are floating data points; the brief is where they earn their keep.*
 
 - **From tool to brief — MVP.** Combine fetched data and LLM summaries into per-brand markdown briefs using `jinja2` templates. Generate a `briefs/` directory with one file per brand. Foundations on project structure, `requirements.txt`, README, basic GitHub Actions CI. The Brand Lens MVP demo.
 
@@ -86,6 +86,8 @@ Reference material outside the day-by-day flow. Read when curious; not paced.
 |------|-------|
 | [BeautifulSoup](sidelines/beautifulsoup.md) | What it is, the tree mental model, the methods you'll actually use, common pitfalls, quick reference |
 | [Modules and modularity](sidelines/modules-and-modularity.md) | How Python's `import` works, where pip puts things, and the design principle of splitting code into pieces |
+| [`if __name__ == "__main__":`](sidelines/main-guard.md) | What `__name__` actually is, why importing a script can accidentally run it, and the one-line fix |
+| [List comprehensions](sidelines/list-comprehensions.md) | The pattern they replace, when to use them, when not to — includes a writing drill, no AI |
 | [Assembly and the stack of abstractions](sidelines/assembly.md) | Punch cards to LLMs — what's actually underneath your Python, why we stopped writing assembly, why it still matters |
 
 ## Friday review
