@@ -92,11 +92,25 @@ Claude moves from a tool Tyler *talks to* into a library his *code calls*. The w
 | [Week 7, Day 4](W7D4.md) | Robust `summarize_brand` (never raises), store the brief in the db, mock the client in tests |
 | [Week 7, Day 5](W7D5.md) | Mentor review — judge brief grounding vs hallucination, break-and-catch, improve the prompt with Claude |
 
+## Week 8
+
+The brief MVP. Everything Brand Lens produces has lived in a database where only a SQL query could see it; this week turns it into a readable per-brand document. Tyler learns `jinja2` templates (separating *how a brief looks* from *the data*), renders one markdown file per brand into a `briefs/` directory, and handles the brand with no brief yet. The foundations day names the principle that's been guiding the whole project — separation of concerns — and covers what makes a pile of files a *project*: layout, dependencies, reproducibility. Then the rendering gets tested (trivially, because it's pure), `requirements.txt` gets pinned, and the project README gets written. Friday is the MVP demo — a clean run from an empty database to a folder of briefs.
+
+| Day | Focus |
+|-----|-------|
+| [Week 8, Day 1](W8D1.md) | `jinja2` templates; `render_brief` (pure) vs `write_brief` (side effect); render one brand to `briefs/<slug>.md` |
+| [Week 8, Day 2](W8D2.md) | Render every brand from the database; the `json.dumps`/`loads` round trip; handle the no-brief case |
+| [Week 8, Day 3](W8D3.md) | Foundations: separation of concerns, project layout, dependencies + reproducibility, the README — no code, no AI |
+| [Week 8, Day 4](W8D4.md) | Test `render_brief` (no mocking — it's pure); pin `requirements.txt`; write the project README |
+| [Week 8, Day 5](W8D5.md) | The MVP demo — clean run from empty db, grounding review on the finished brief, break-and-catch, milestone retro |
+
 ## Future course ideas
 
-Weeks 8 and beyond are open. Candidate topics, in no particular order — order, scope, and inclusion are all subject to change:
+Weeks 9 and beyond. Candidate topics — order, scope, and inclusion subject to change (Weeks 10–12 are the soft part of the estimate; revisit the 12-week total with Tyler around Weeks 9–10):
 
-- **From tool to brief — MVP.** Combine fetched data and the stored LLM briefs into per-brand markdown documents using `jinja2` templates. Generate a `briefs/` directory with one file per brand. Foundations on project structure, `requirements.txt`, README, basic GitHub Actions CI. The Brand Lens MVP demo. *The grounding judgment from W7D5 is central here — a brief you'd put in front of a brand has to be true, not just fluent.*
+- **Branches, PRs, and gated checks (CI).** *(planned next, Weeks 9–ish)* GitHub Actions runs the pytest suite on every push, and a red suite *blocks* the change. Prerequisite: Tyler commits straight to `main` today, so a git branch/PR workflow comes first (feature branch → pull request → merge), then basic CI, then branch protection making the green check *required*. The payoff of Weeks 5–8's tests: the suite becomes the merge gate.
+
+- **Deploying to AWS (FastAPI web app).** *(Weeks 10–12, after CI)* A FastAPI app serving the briefs as a real running service. Build up: FastAPI locally → containerize → deploy (App Runner / Fargate over raw EC2), with an optional EventBridge schedule mirroring the autoarb cron model. Foundations on IaaS, IAM, credentials, regions — reusing W7's secret-handling discipline. Expect a dedicated FastAPI-framework week before any AWS step.
 
 - **Wiring summarization behind a flag.** `summarize_all.py` is a manual step at the end of Week 7 (LLM calls cost money, so they shouldn't fire on every fetch run). A natural early task: fold it into `runner.py` behind a `--summarize` flag, default off.
 

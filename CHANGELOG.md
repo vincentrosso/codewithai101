@@ -277,3 +277,38 @@ Versions follow `major.minor.patch`. Default bump is **patch** (typos, wording, 
 
 ### v1.0.0 — 2026-05-27
 - Initial release: Friday review — demo the full fetch→parse→store→summarize→store loop, the new grounded/generic/invented judgment of a brief against its source data, break-and-catch on `brief.py`, Claude-judging a prompt change for grounding, Week 7 retrospective; bridge to the Week 8 brief-MVP
+
+---
+
+## W8D1.md
+
+### v1.0.0 — 2026-05-27
+- Initial release: brief MVP begins — `jinja2` (`{{ }}` output vs `{% %}` logic), `templates/brief.md`, pure `render_brief(context)` split from side-effectful `write_brief(slug, markdown)` (W5D3 separation), render one brand's stored brief to `briefs/<slug>.md`; `briefs/` gitignored
+
+---
+
+## W8D2.md
+
+### v1.0.0 — 2026-05-27
+- Initial release: `generate_briefs.py` — `build_context` pulls the stored brief (`json.loads`, the round-trip back from W7D4's `json.dumps`) + pages from the db, `generate_all` loops every brand with a `__main__` guard; handle the no-brief brand via the template `{% else %}`; the pretty-vs-true grounding caution; template polish (page descriptions, no-pages case)
+
+---
+
+## W8D3.md
+
+### v1.0.0 — 2026-05-27
+- Initial release: foundations day — separation of concerns as the through-line of the whole project (fetch/parse/db/brief/render, pure vs side-effect, data vs presentation), the brand-lens file tree and code/config/data-output categories, dependencies + reproducibility (`requirements.txt`, pinning, "works on my machine"), the README as front door; no-AI mini-quiz
+
+---
+
+## W8D4.md
+
+### v1.0.0 — 2026-05-27
+- Initial release: test `render_brief` with substring assertions and NO mocking (contrast with W5D4/W7D4 — it's pure); pin `requirements.txt` to direct deps only (why not `pip freeze`); write the project README (what/setup/usage/layout) with the clone-without-asking test
+
+---
+
+## W8D5.md
+
+### v1.0.0 — 2026-05-27
+- Initial release: MVP demo — clean run from an empty db to a `briefs/` folder (three commands), file-tree walkthrough, grounding judgment on the finished/polished brief, break-and-catch on the template/`render.py`, Claude-judging a "Data completeness" template addition, milestone retrospective ("Week 1 me vs now"); bridge to Week 9 (branches/PRs/CI gating)
