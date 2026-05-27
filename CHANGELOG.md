@@ -200,3 +200,80 @@ Versions follow `major.minor.patch`. Default bump is **patch** (typos, wording, 
 
 ### v1.0.0 — 2026-05-04
 - Initial release: how Python's import system works (sys.path, sys.modules, what pip install actually does, your modules vs library modules) plus the design principle of modularity (clear boundaries, replaceability, testability, examples beyond Python). Cross-links to beautifulsoup.md.
+
+---
+
+## sidelines/why-test.md
+
+### v1.0.0 — 2026-05-27
+- Initial release: the motivational "why do unit tests" companion to W5D3's mechanics — the honest "feels like writing the code twice" objection, five grounded reasons (regression alarm, trusting Claude Code's edits, executable documentation, design pressure toward pure functions, speed over manual checking), when *not* to write a test, and a no-AI reflection prompt tied to the W5D5 retro. Cross-links to W5D3.
+
+---
+
+## W6D1.md
+
+### v1.0.0 — 2026-05-27
+- Initial release: why a database over flat files; `sqlite3` (built-in); two-table schema (`brands`, `pages`) with PRIMARY KEY / foreign key / NOT NULL / UNIQUE; `init_db`, `insert_brand`, `insert_page` with `?` placeholders (SQL-injection note); `commit()`; read back with the `sqlite3` CLI; `.gitignore` the `.db` file
+
+---
+
+## W6D2.md
+
+### v1.0.0 — 2026-05-27
+- Initial release: querying — `SELECT`/`WHERE`, `=` vs `IS NULL` gotcha, `COUNT`, `ORDER BY`, `GROUP BY` (per-category counts), first `JOIN` using the foreign key; queries from Python via cursor + `fetchall`; the `?`-not-f-string rule restated with the injection example
+
+---
+
+## W6D3.md
+
+### v1.0.0 — 2026-05-27
+- Initial release: foundations day — a table as a list-of-dicts made strict, primary keys (natural vs surrogate), foreign keys and normalization (store-once-point-everywhere), why not one JSON blob, what `NULL` means (vs `0`/`""`), a note on indexes; no-AI mini-quiz
+
+---
+
+## W6D4.md
+
+### v1.0.0 — 2026-05-27
+- Initial release: the re-run problem (UNIQUE → IntegrityError) and `upsert_page` (`INSERT OR REPLACE`, stamp `fetched_at`); wire the db into `runner.py` (`--db` flag, connection lifecycle); test `db.py` with an in-memory `:memory:` `yield` fixture (callback to W5 fixtures, W5D3 side effects, W5D4 faking); idempotent re-runs
+
+---
+
+## W6D5.md
+
+### v1.0.0 — 2026-05-27
+- Initial release: Friday review — schema + live query demo, idempotent-upsert demo, break-and-catch on `db.py`, Claude-judging a query (checking `IS NOT NULL` and `?`-parameter safety), Week 6 retrospective journal
+
+---
+
+## W7D1.md
+
+### v1.0.0 — 2026-05-27
+- Initial release: first programmatic Claude call — API key from the console, `.env` + `.env.example` (gitignored, key = password), `anthropic` + `python-dotenv`, `client.messages.create` with `model`/`max_tokens`/`messages`, `message.content[0].text`, Haiku for cost; observe non-determinism across two runs (vs pure `parse_page`)
+
+---
+
+## W7D2.md
+
+### v1.0.0 — 2026-05-27
+- Initial release: structured JSON output — `page_fields_for_brand` (cursor.description → dicts), `build_prompt` mapping each W2D4 field (`description`/`h1`/`title`/`og_title`/`canonical`) to a brand-evaluation question, system prompt for JSON-only, `summarize_brand` returns a parsed dict via `json.loads`; flags the unparseable-reply gap for D4
+
+---
+
+## W7D3.md
+
+### v1.0.0 — 2026-05-27
+- Initial release: foundations day — an API as the W2D3 HTTP request/response with a key attached, authentication (key = password, revoke on leak), tokens as the unit of cost/limits/rate-limits, what a model is and isn't (text predictor, non-deterministic, hallucination, sees only the prompt), and the three reasons a real LLM call can't be unit-tested → mock it (W5D4 callback); no-AI mini-quiz
+
+---
+
+## W7D4.md
+
+### v1.0.0 — 2026-05-27
+- Initial release: robust `summarize_brand` returning `(summary, error)` and never raising (two `try/except`: API failure + JSON parse) echoing `fetch_one`; store the brief in the db (`brief` column via `ALTER TABLE`, `set_brief` with `json.dumps`, UPDATE...WHERE); test by mocking `client.messages.create` with `FakeMessage`/`FakeBlock` + `monkeypatch` (W5D4 pattern, new target) — happy/bad-JSON/API-raises paths
+
+---
+
+## W7D5.md
+
+### v1.0.0 — 2026-05-27
+- Initial release: Friday review — demo the full fetch→parse→store→summarize→store loop, the new grounded/generic/invented judgment of a brief against its source data, break-and-catch on `brief.py`, Claude-judging a prompt change for grounding, Week 7 retrospective; bridge to the Week 8 brief-MVP

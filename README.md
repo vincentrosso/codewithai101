@@ -68,15 +68,41 @@ Tests enter the project. With Claude Code now editing real files, Tyler needs a 
 | [Week 5, Day 4](W5D4.md) | Mocking the network: `monkeypatch` + a fake response, happy path and error path |
 | [Week 5, Day 5](W5D5.md) | Mentor review — break-and-catch, judging a Claude-written test, Week 5 retrospective |
 
+## Week 6
+
+CSV and JSON files give way to a real database. Tyler moves the pipeline onto SQLite (built into Python, nothing to install), with a two-table schema (`brands` and `pages`) wired by a foreign key. Raw SQL — `SELECT`, `WHERE`, `COUNT`, `GROUP BY`, `JOIN`, no ORM — turns "how many pages have a meta description?" into a one-line query. The pipeline learns to write to the database with an idempotent upsert (re-runs refresh rows instead of duplicating), and the db layer gets tested against an in-memory database — the Week 5 fixture idea, reused.
+
+| Day | Focus |
+|-----|-------|
+| [Week 6, Day 1](W6D1.md) | SQLite + `sqlite3`; schema (`brands`, `pages`), `?` placeholders, insert rows, read back with the CLI |
+| [Week 6, Day 2](W6D2.md) | Querying: `SELECT`, `WHERE`, `IS NULL`, `COUNT`, `ORDER BY`, `GROUP BY`, first `JOIN`; queries from Python |
+| [Week 6, Day 3](W6D3.md) | Foundations: tables as lists-of-dicts, primary/foreign keys, normalization, `NULL` — no code, no AI, mini-quiz |
+| [Week 6, Day 4](W6D4.md) | Wire the db into `runner.py`; the re-run problem + upsert; test `db.py` with an in-memory `:memory:` fixture |
+| [Week 6, Day 5](W6D5.md) | Mentor review — query demo, break-and-catch, judge a Claude-written query (`IS NOT NULL`, `?` safety) |
+
+## Week 7
+
+Claude moves from a tool Tyler *talks to* into a library his *code calls*. The week covers the Anthropic SDK, API keys in a gitignored `.env`, structured JSON output (not prose) built from the W2D4 fields — each field finally tied to a concrete brand-evaluation question — and storing the resulting brief in the database. The LLM call is wrapped so it never crashes the run (the `fetch_one` contract again) and mocked in tests so the suite stays fast, offline, and free (the W5D4 technique, new target). By Friday Tyler is judging whether Claude's brief is *grounded* in the data or hallucinated.
+
+| Day | Focus |
+|-----|-------|
+| [Week 7, Day 1](W7D1.md) | First API call; get a key, `.env` + `python-dotenv`, `anthropic` SDK; non-determinism across runs |
+| [Week 7, Day 2](W7D2.md) | Structured output: feed scraped fields, get back JSON; each W2D4 field → a brand-evaluation question |
+| [Week 7, Day 3](W7D3.md) | Foundations: APIs as HTTP, auth, tokens, what a model is/isn't, why you can't unit-test a real call — no code, no AI |
+| [Week 7, Day 4](W7D4.md) | Robust `summarize_brand` (never raises), store the brief in the db, mock the client in tests |
+| [Week 7, Day 5](W7D5.md) | Mentor review — judge brief grounding vs hallucination, break-and-catch, improve the prompt with Claude |
+
 ## Future course ideas
 
-Weeks 6 and beyond are open. Candidate topics, in no particular order — order, scope, and inclusion are all subject to change:
+Weeks 8 and beyond are open. Candidate topics, in no particular order — order, scope, and inclusion are all subject to change:
 
-- **Persisting and querying with SQLite.** Move from CSV/JSON files to SQLite (built into Python, no install). Create `brands` and `fetches` tables. Learn raw SQL: `SELECT`, `WHERE`, `JOIN`, `GROUP BY` — no ORM. Foundations on relational thinking and primary keys. End state: pipeline writes to a database; "how many brands have a meta description?" is a one-line query.
+- **From tool to brief — MVP.** Combine fetched data and the stored LLM briefs into per-brand markdown documents using `jinja2` templates. Generate a `briefs/` directory with one file per brand. Foundations on project structure, `requirements.txt`, README, basic GitHub Actions CI. The Brand Lens MVP demo. *The grounding judgment from W7D5 is central here — a brief you'd put in front of a brand has to be true, not just fluent.*
 
-- **First LLM calls from Python.** Bring Claude into the brand-lens codebase as a library, not just a tool you talk to. Anthropic SDK, API keys, `.env` files, structured-output prompts (get JSON back, not prose). Foundations on what an API actually is, authentication, rate limits. End state: pipeline produces an LLM-generated brand summary per brand. *Note when writing this week: circle back to the W2D4 fields (`description`, `og:title`, `canonical`, `h1`) and tie each one to a concrete brand-evaluation question the LLM is being asked to answer. Right now those fields are floating data points; the brief is where they earn their keep.*
+- **Wiring summarization behind a flag.** `summarize_all.py` is a manual step at the end of Week 7 (LLM calls cost money, so they shouldn't fire on every fetch run). A natural early task: fold it into `runner.py` behind a `--summarize` flag, default off.
 
-- **From tool to brief — MVP.** Combine fetched data and LLM summaries into per-brand markdown briefs using `jinja2` templates. Generate a `briefs/` directory with one file per brand. Foundations on project structure, `requirements.txt`, README, basic GitHub Actions CI. The Brand Lens MVP demo.
+- **Branches, PRs, and gated checks (CI).** The payoff of Weeks 5–7's tests and the [why-test](sidelines/why-test.md) sideline: GitHub Actions runs the pytest suite automatically on every push, and a red suite *blocks* the change. **Prerequisite:** Tyler currently commits straight to `main`, so this needs a git-branch/PR workflow first (feature branch → pull request → review → merge). Sequence: a branching/PR week, then basic CI (Actions running `pytest`), then branch protection that makes the green check *required* before merge. This is where "trust Claude Code's edits because the suite has your back" becomes literal — the suite is the gate.
+
+- **Deploying to AWS.** Once the MVP exists and produces a shareable artifact (static HTML briefs), introduce cloud deployment. Gentlest first surface: **S3 static-site hosting** for the generated briefs — no servers, no always-on cost, a real public URL. Then a scheduled run (EventBridge → Lambda or Fargate) that mirrors the autoarb cron model (daily job → published report). Foundations on what IaaS is, IAM, credentials, and regions — reusing the secret-handling discipline from W7's `.env` (an AWS access key is the same kind of secret as an API key). Likely Weeks 10–12, after the MVP and after CI exist.
 
 ## Sidelines
 
@@ -89,6 +115,8 @@ Reference material outside the day-by-day flow. Read when curious; not paced.
 | [`if __name__ == "__main__":`](sidelines/main-guard.md) | What `__name__` actually is, why importing a script can accidentally run it, and the one-line fix |
 | [List comprehensions](sidelines/list-comprehensions.md) | The pattern they replace, when to use them, when not to — includes a writing drill, no AI |
 | [Assembly and the stack of abstractions](sidelines/assembly.md) | Punch cards to LLMs — what's actually underneath your Python, why we stopped writing assembly, why it still matters |
+| [`sys.argv`, `argparse`, and `**kwargs`](sidelines/cli-args-and-kwargs.md) | Three things that look like "arguments" — what each one actually is, why argparse and kwargs are not alternatives, and the `do_work(**vars(args))` pattern |
+| [Why do unit tests?](sidelines/why-test.md) | The motivational "why bother" behind W5D3's mechanics — the five real reasons (regression alarm, trusting Claude Code's edits, executable docs, design pressure, speed), when *not* to test, and a reflection |
 
 ## Friday review
 
