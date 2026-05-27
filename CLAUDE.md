@@ -8,15 +8,18 @@ A curriculum repo for a 12-week self-paced programming course. Content is pure m
 
 ## Structure
 
-Each week's content is broken into daily lesson files at the root. Week 1 is fully written; future weeks will follow the same pattern.
+Each week's content is broken into daily lesson files at the root, named `WxDy.md`. **Weeks 1–8 are written** (W1D1 through W8D5; Week 1 is four days, Weeks 2+ are five). Weeks 9–12 are planned but not yet drafted — see the "Future course ideas" section of `README.md` for the agreed direction (CI gating next, then an AWS/FastAPI deploy).
 
 ```
-W1D1.md  — toolchain setup (Sublime, Ghostty, terminal basics, first hello.py)
-W1D2.md  — Homebrew, Python 3.12, git config, SSH, first GitHub repo
-W1D3.md  — virtual environments, requests, BeautifulSoup, save to JSONL
-W1D4.md  — lists, for loops, try/except, batch URL fetching (fetch_many.py)
-README.md — course overview, format, week-by-week table
+W1D1.md … W8D5.md  — daily lessons (the day count restarts at "day N:" in commit msgs; W8 = days 35–39)
+README.md          — course overview, format, full week-by-week table, sidelines index, future ideas
+CHANGELOG.md       — per-file version history (semver; default bump = patch)
+sidelines/         — reference material outside the day-by-day flow (read when curious, not paced)
 ```
+
+The weekly rhythm from Week 2 on is consistent and should be preserved when drafting new weeks: **D1/D2/D4 are hands-on building, D3 is a no-AI foundations day (conceptual + mini-quiz), D5 is the Friday mentor review** (demo → break-and-catch → judge a Claude-written artifact → retrospective journal). The capstone's `brand-lens` code state at the end of each week is cumulative — new weeks build on the files prior weeks created (`fetch.py`, `parse.py`, `runner.py`, `brands.yaml`, then `db.py`, `brief.py`, `render.py`, `templates/`, `tests/`).
+
+Sidelines are kebab-case `.md` files in `sidelines/`, each linked from the README sidelines table and from the lesson day where they're most relevant.
 
 ## Pedagogical Constraints
 
@@ -26,7 +29,7 @@ Starting Week 2, AI tools come online. Lessons from that point can include AI-as
 
 ## Capstone
 
-The capstone project is **Brand Lens** — a tool that helps Korean brands evaluate their US market presence using web scraping, structured data, and (eventually) LLM-generated briefs. Every day's lesson is designed to advance this project. W1D3 introduces fetching and saving a single URL; W1D4 extends it to batch processing with error handling. The capstone is the throughline — lessons should not introduce concepts without connecting them to it.
+The capstone project is **Brand Lens** — a tool that helps Korean brands evaluate their US market presence using web scraping, structured data, and LLM-generated briefs. Every day's lesson is designed to advance this project. W1D3 introduces fetching and saving a single URL; W1D4 extends it to batch processing; the pipeline then grows a YAML config + modules (W3), a test suite (W5), a SQLite store (W6), LLM summarization (W7), and a rendered per-brand brief — the **MVP milestone reached at the end of Week 8**. The capstone is the throughline — lessons should not introduce concepts without connecting them to it.
 
 ## Learner Profile
 
