@@ -131,6 +131,7 @@ Reference material outside the day-by-day flow. Read when curious; not paced.
 | [Assembly and the stack of abstractions](sidelines/assembly.md) | Punch cards to LLMs — what's actually underneath your Python, why we stopped writing assembly, why it still matters |
 | [`sys.argv`, `argparse`, and `**kwargs`](sidelines/cli-args-and-kwargs.md) | Three things that look like "arguments" — what each one actually is, why argparse and kwargs are not alternatives, and the `do_work(**vars(args))` pattern |
 | [Why do unit tests?](sidelines/why-test.md) | The motivational "why bother" behind W5D3's mechanics — the five real reasons (regression alarm, trusting Claude Code's edits, executable docs, design pressure, speed), when *not* to test, and a reflection |
+| [The relational model](sidelines/relational-model.md) | Databases from set theory up — the formal floor under W6D3. Three sittings: sets/tuples/relations (a table *is* a subset of a Cartesian product), keys + functional dependencies + normalization as theorems (your 3NF instinct, derived), relational algebra (σ/π/⋈) + where SQL bends the math (bags, three-valued NULL logic) |
 
 ## Friday review
 

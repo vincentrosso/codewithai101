@@ -210,6 +210,13 @@ Versions follow `major.minor.patch`. Default bump is **patch** (typos, wording, 
 
 ---
 
+## sidelines/relational-model.md
+
+### v1.0.0 — 2026-06-04
+- Initial release: the formal-theory companion to W6D3, "databases from set theory up," built as three un-paced sittings each with a no-AI drill. Sitting 1 — sets (no order/no duplicates), tuples, domains, the Cartesian product, and the punchline that a table *is* a relation (a subset of a Cartesian product); the set-theory⇄SQL vocabulary table; Codd 1970 / declarative-vs-navigational history. Sitting 2 — functional dependencies (`X → Y`), superkey/candidate/primary keys defined via FDs, the three anomalies (update/insert/delete), normal forms 1NF–3NF (+BCNF named) with the `pages_flat` 3NF-violation worked example, "the key, the whole key, and nothing but the key," and an instinct⇄theorem map. Sitting 3 — relational algebra (σ/π/⋈), a real W6D2 query dissolved into `π(σ(⋈))`, declarative-vs-imperative + the query planner, and where SQL bends the math (bags vs sets/`DISTINCT`, ordered columns, NULL → three-valued Kleene logic as the formal reason `= NULL` returns nothing). Cross-links to W6D3 and assembly.md; light Kubrick/Nadsat + HAL flavor.
+
+---
+
 ## W6D1.md
 
 ### v1.0.0 — 2026-05-27
@@ -225,6 +232,9 @@ Versions follow `major.minor.patch`. Default bump is **patch** (typos, wording, 
 ---
 
 ## W6D3.md
+
+### v1.0.1 — 2026-06-04
+- Added a callout in §4 (the "you don't need the formal theory" line) pointing curious readers to the new [relational-model](sidelines/relational-model.md) sideline — the formal math under the normalization instinct
 
 ### v1.0.0 — 2026-05-27
 - Initial release: foundations day — a table as a list-of-dicts made strict, primary keys (natural vs surrogate), foreign keys and normalization (store-once-point-everywhere), why not one JSON blob, what `NULL` means (vs `0`/`""`), a note on indexes; no-AI mini-quiz
