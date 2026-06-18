@@ -104,19 +104,59 @@ The brief MVP. Everything Brand Lens produces has lived in a database where only
 | [Week 8, Day 4](W8D4.md) | Test `render_brief` (no mocking — it's pure); pin `requirements.txt`; write the project README |
 | [Week 8, Day 5](W8D5.md) | The MVP demo — clean run from empty db, grounding review on the finished brief, break-and-catch, milestone retro |
 
-## Future course ideas
+## Week 9 — Brand Lens goes live (static site)
 
-Weeks 9 and beyond. Candidate topics — order, scope, and inclusion subject to change (Weeks 10–12 are the soft part of the estimate; revisit the 12-week total with Tyler around Weeks 9–10):
+The briefs stop being files only a SQL query can see and become a real site Tyler opens in a browser. Brand Lens has **no runtime backend** — it's a batch pipeline producing pre-computed documents — so the site is static HTML rendered from the same `jinja2` templates as Week 8, viewed locally with `python -m http.server`. This is the re-engagement week after the abstract data weeks: all of it visible, no server concept required.
 
-- **Branches, PRs, and gated checks (CI).** *(planned next, Weeks 9–ish)* GitHub Actions runs the pytest suite on every push, and a red suite *blocks* the change. Prerequisite: Tyler commits straight to `main` today, so a git branch/PR workflow comes first (feature branch → pull request → merge), then basic CI, then branch protection making the green check *required*. The payoff of Weeks 5–8's tests: the suite becomes the merge gate.
+| Day | Focus |
+|-----|-------|
+| [Week 9, Day 1](W9D1.md) | Render each brief as a standalone HTML page (not markdown); a per-brand HTML template; write `site/<slug>.html` and open it in the browser |
+| [Week 9, Day 2](W9D2.md) | An index page: `site/index.html` listing every brand with links to each brief; a small shared CSS file; the site as a set of linked pages |
+| [Week 9, Day 3](W9D3.md) | Foundations: how a browser renders HTML/CSS, what "static" means (files vs a running program), `file://` vs a local server, why `python -m http.server` exists, relative vs absolute links — no code, no AI, mini-quiz |
+| [Week 9, Day 4](W9D4.md) | `build_site.py` — regenerate the whole `site/` from the db in one command (empty → full site); handle the no-brief brand; test the pure render functions (no mocking, the W8D4 pattern) |
+| [Week 9, Day 5](W9D5.md) | Mentor review — demo the local site, break-and-catch (a broken template or dead link), judge a Claude-written template/CSS, retrospective |
 
-- **Deploying to AWS (FastAPI web app).** *(Weeks 10–12, after CI)* A FastAPI app serving the briefs as a real running service. Build up: FastAPI locally → containerize → deploy (App Runner / Fargate over raw EC2), with an optional EventBridge schedule mirroring the autoarb cron model. Foundations on IaaS, IAM, credentials, regions — reusing W7's secret-handling discipline. Expect a dedicated FastAPI-framework week before any AWS step.
+## Week 10 — Branches, PRs, and the gate (CI)
 
-- **Wiring summarization behind a flag.** `summarize_all.py` is a manual step at the end of Week 7 (LLM calls cost money, so they shouldn't fire on every fetch run). A natural early task: fold it into `runner.py` behind a `--summarize` flag, default off.
+Now that Brand Lens is visible, the plumbing — motivated by Tyler's own evidence: duplicate, misnumbered commits straight to `main`. A git branch/PR workflow first (he commits to `main` today), then GitHub Actions runs `pytest` on every push, then branch protection makes a green suite *required*. The literal payoff of Weeks 5–9's tests and the [why-test](sidelines/why-test.md) sideline: the suite becomes the merge gate.
 
-- **Branches, PRs, and gated checks (CI).** The payoff of Weeks 5–7's tests and the [why-test](sidelines/why-test.md) sideline: GitHub Actions runs the pytest suite automatically on every push, and a red suite *blocks* the change. **Prerequisite:** Tyler currently commits straight to `main`, so this needs a git-branch/PR workflow first (feature branch → pull request → review → merge). Sequence: a branching/PR week, then basic CI (Actions running `pytest`), then branch protection that makes the green check *required* before merge. This is where "trust Claude Code's edits because the suite has your back" becomes literal — the suite is the gate.
+| Day | Focus |
+|-----|-------|
+| [Week 10, Day 1](W10D1.md) | The problem with committing to `main` (his own history as the cautionary tale); feature branches: `git switch -c`, change on a branch, push it |
+| [Week 10, Day 2](W10D2.md) | Pull requests: open a PR on GitHub, review your own diff, merge, delete the branch — the PR as the review checkpoint (callback to W4's "review every diff") |
+| [Week 10, Day 3](W10D3.md) | Foundations: a branch is a pointer to a commit; the history graph; merge; what a PR is socially and technically; why teams don't push to `main` — no code, no AI, mini-quiz |
+| [Week 10, Day 4](W10D4.md) | CI: write `.github/workflows/ci.yml` to run `pytest` on every push/PR; watch it pass; break a test → the red ✗ on the PR |
+| [Week 10, Day 5](W10D5.md) | Mentor review — branch protection makes green *required*; demo a PR blocked by a red suite; break-and-catch via CI; judge a Claude-written workflow YAML; retrospective |
 
-- **Deploying to AWS (FastAPI web app).** Comes *after* CI gating exists, so deploys only ever ship green code. Target: a **FastAPI web app** that serves the briefs (not just static files) — a real running service. Because this is the heaviest jump in the course, build up to it: first wrap the pipeline output in a small FastAPI app and run it locally; then containerize; then deploy (App Runner or ECS/Fargate is gentler than raw EC2). A scheduled job (EventBridge) can regenerate briefs on a cadence, mirroring the autoarb cron model. Foundations on what IaaS is, IAM, credentials, and regions — reusing the secret-handling discipline from W7's `.env` (an AWS access key is the same kind of secret as an API key). Likely Weeks 10–12. *A FastAPI app is a big surface for a no-prior-experience learner — expect to spend a dedicated week on the framework (routes, request/response, running a server) before any AWS step.*
+## Week 11 — Deploy to S3 (live on the internet)
+
+The static site goes public on AWS S3 — the simplest possible deploy, and the stack Tyler will actually ship to at NIT. AWS account, an IAM user (not root), the AWS CLI configured with credentials kept secret the W7 way, an S3 bucket with static website hosting, `aws s3 sync` → a public URL. Framed throughout as "this is how your code ships at NIT," not generic cloud.
+
+| Day | Focus |
+|-----|-------|
+| [Week 11, Day 1](W11D1.md) | AWS account + an IAM user (not root), least privilege; install the AWS CLI; `aws configure` with credentials stored the gitignored way (W7 discipline); verify with a harmless command |
+| [Week 11, Day 2](W11D2.md) | S3: create a bucket; `aws s3 sync site/ s3://…`; enable static website hosting; a public-read bucket policy; the public URL — live on the internet |
+| [Week 11, Day 3](W11D3.md) | Foundations: what IaaS is ("someone else's computer"), IAM (users/policies/least privilege), credentials are secrets (an access key is the same kind of secret as a W7 API key), regions, http vs https — no code, no AI, mini-quiz |
+| [Week 11, Day 4](W11D4.md) | Make deploy a one-command repeatable step (`deploy.sh`: `build_site` → `s3 sync --delete`); cost + budget alert + tear-down discipline |
+| [Week 11, Day 5](W11D5.md) | Mentor review — demo the live site, cloud-shaped break-and-catch (403 / stale site that CI can't catch), judge a Claude-written deploy change, retrospective |
+
+## Week 12 — Automate the deploy, and the finale (CI/CD)
+
+The loop closes: GitHub Actions deploys to S3 on a green merge to `main`, so "ship only green code" becomes literal and automatic — Week 10's gate wired to Week 11's deploy. Then the capstone finale and the course-long retrospective. **The course closes here.**
+
+| Day | Focus |
+|-----|-------|
+| [Week 12, Day 1](W12D1.md) | CI/CD: add a deploy workflow that syncs to S3 on a push to `main`; AWS creds as GitHub Actions secrets (secret discipline again); watch a merge auto-publish |
+| [Week 12, Day 2](W12D2.md) | Guardrails: one workflow, `deploy` `needs: test` (gate → deploy chain); a broken test *skips* the deploy. Optional: scheduled regeneration via an Actions cron |
+| [Week 12, Day 3](W12D3.md) | Foundations: the whole arc end-to-end, `fetch.py` → public URL; the two journeys (build vs view); what "deployed" and "CI/CD" mean; the 12-week map — no code, no AI, synthesis quiz |
+| [Week 12, Day 4](W12D4.md) | Capstone build: a clean run from an empty database all the way to a robot-deployed live site; fix whatever breaks; finalize the project README + `requirements.txt` |
+| [Week 12, Day 5](W12D5.md) | **Course finale** — the MVP live on the internet, the grand break-and-catch across the whole system, judge Claude on the finished tool, the big course-long retrospective |
+
+## Course 2 (what doesn't make the cut)
+
+Brand Lens reaches its deployed MVP at the end of Week 12, and the course closes there. The heavier, more abstract topics a static site simply doesn't need are deferred to a follow-on course, where each is motivated by a real need rather than introduced for its own sake: **FastAPI as a framework, Docker/containers, ECS/Fargate, and a genuinely dynamic backend** — the day Brand Lens needs to *do* something at request time (live search, a trigger-a-scrape button, auth). HTTPS and a custom domain via **CloudFront** (an S3 website endpoint is HTTP-only) is a natural Course-2 opener.
+
+Loose end, not yet placed: wiring `summarize_all.py` into `runner.py` behind a `--summarize` flag (default off), so the manual end-of-Week-7 LLM step joins the pipeline without firing on every fetch run. A small task that could slot into a Course-2 warm-up or a revision pass.
 
 ## Sidelines
 

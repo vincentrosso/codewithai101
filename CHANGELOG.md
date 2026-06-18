@@ -320,5 +320,148 @@ Versions follow `major.minor.patch`. Default bump is **patch** (typos, wording, 
 
 ## W8D5.md
 
+### v1.1.0 — 2026-06-18
+- Re-pointed the "Looking ahead" section: Week 9 is now the static site (HTML/CSS, view in a browser), not branches/PRs/CI. The branch/PR/CI workflow moved to Week 10 and the AWS deploy to Weeks 11–12 (deploy target changed from a FastAPI server to an S3 static site; FastAPI/Docker deferred to a Course 2). Retitled "making it shareable" → "making it visible."
+
 ### v1.0.0 — 2026-05-27
-- Initial release: MVP demo — clean run from an empty db to a `briefs/` folder (three commands), file-tree walkthrough, grounding judgment on the finished/polished brief, break-and-catch on the template/`render.py`, Claude-judging a "Data completeness" template addition, milestone retrospective ("Week 1 me vs now"); bridge to Week 9 (branches/PRs/CI gating)
+- Initial release: MVP demo — clean run from an empty db to a `briefs/` folder (three commands), file-tree walkthrough, grounding judgment on the finished/polished brief, break-and-catch on the template/`render.py`, Claude-judging a "Data completeness" template addition, milestone retrospective ("Week 1 me vs now"); bridge to Week 9
+
+---
+
+## W9D1.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: Week 9 (static site) begins — markdown brief → HTML page; `templates/brief.html` with the same `{{ }}`/`{% %}` logic over HTML scaffolding; `autoescape` via `select_autoescape` (data-not-code safety); pure `render_brief_html` + side-effectful `write_page(slug, html)` to `site/` (gitignored); `open` to view; the print-shows-tags / browser-draws-page prediction
+
+---
+
+## W9D2.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: the index page + styling — `db.all_brands` helper; `templates/index.html` looping brands into relative `<slug>.html` links with a `{% for %}/{% else %}` empty case; `static/style.css` linked from both templates (`<link rel="stylesheet">`); `render_index`; relative links and the HTML/CSS separation-of-concerns split
+
+---
+
+## W9D3.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: foundations day — the browser as the renderer (who interprets HTML); HTML/CSS/JavaScript and why Brand Lens uses no JS; static vs dynamic and the load-bearing "Brand Lens needs no backend" argument; `file://` vs a served `http://` and why `python -m http.server` exists; absolute vs relative links and portability; no-AI mini-quiz
+
+---
+
+## W9D4.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: `build_site.py` — one command rebuilds the whole `site/` from the db (all brands → context → HTML, plus index, plus `shutil.copy` the stylesheet), runs from empty, reuses W8's `build_context`; preview over `python -m http.server`; test the pure renderers with substring assertions and no mocking (incl. the load-bearing index `href`); the W8D4 purity payoff
+
+---
+
+## W9D5.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: Friday review — clean run from empty db to a `localhost`-served site; demo + "static, no backend" narration; grounding judgment on the web page; break-and-catch split into tests-catch vs eyes-only (missing stylesheet copy); Claude-judging a confidence-badge template/CSS change (HTML/CSS separation); Week 9 retrospective; bridge to Week 10 (branches/PRs/CI)
+
+---
+
+## W10D1.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: Week 10 begins — why committing straight to `main` is risky (Tyler's own messy history as Exhibit A); a branch as an independent line of work; `git switch -c`, commit on the branch, prove `main` doesn't have it; `git push -u origin`; stop short of the PR; one-branch-per-change
+
+---
+
+## W10D2.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: pull requests — PR as "merge this branch" + a review checkpoint (W4 "review every diff" callback); open a PR (base vs compare), review your own diff (catch stray `site/`/`.DS_Store` files), merge, delete the branch, `git pull` to sync local `main`; the full seven-step branch→PR→merge→sync loop
+
+---
+
+## W10D3.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: foundations day — a commit as a snapshot-with-a-parent; the commit graph; a branch as a pointer (not a copy) and `HEAD`; the diverged-labels picture behind "main doesn't have that commit"; fast-forward vs merge commit (two parents); merge conflicts as git refusing to guess; the three properties (isolation / review-before-merge / parallel work); no-AI mini-quiz
+
+---
+
+## W10D4.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: continuous integration — GitHub Actions; why a secretless, internet-less robot can run the suite (because the network and LLM are mocked, W5D4/W7D4 paying off); write `.github/workflows/ci.yml` (`on`, `runs-on`, `uses` vs `run`, `pip install -r requirements.txt`, `pytest`); ship it via a PR; watch green; deliberately break a test and watch the PR go red
+
+---
+
+## W10D5.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: Friday review — branch protection making the green check *required* + blocking direct pushes to `main`; demo a red CI check *disabling* the merge button; break-and-catch via CI (incl. a green-passing gap like a dropped `ORDER BY`); Claude-judging a CI Python-matrix change (judging fit, not saying yes); Week 10 retrospective; bridge to Week 11 (AWS S3)
+
+---
+
+## W11D1.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: Week 11 begins — AWS account; why not root (least privilege, the master-key analogy, the `.env`/API-key parallel from W7); an IAM user with S3-only permissions + an access key; install + `aws configure` the AWS CLI (keys land in `~/.aws/`, outside the repo); `aws sts get-caller-identity` proves the secure connection; no repo commit (keys aren't project code)
+
+---
+
+## W11D2.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: a bucket on the internet — `aws s3 mb`; `aws s3 sync site/`; `aws s3 website` (index/error document, why `index.html` is magic); "private by default, public by choice" in two deliberate steps (public-access-block + a read-only `s3:GetObject` bucket policy, `Principal: *`); the website-endpoint URL; http-not-https note; commit `bucket-policy.json` through the branch/PR/CI loop
+
+---
+
+## W11D3.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: foundations day — the cloud as "someone else's computer" and IaaS (static site = renting storage, not a running machine); the account/root/IAM-user/policy security model and least privilege; authentication vs authorization (the key vs the policy; a 403 as "authn ok, authz no"); regions (and where the region shows up in the endpoint); why the site is http and what CloudFront+a certificate would add (Course 2); no-AI mini-quiz
+
+---
+
+## W11D4.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: one-command deploy — `deploy.sh` (shebang, `set -euo pipefail`, build-then-sync, `BUCKET` in one place); the `--delete` flag and the "ghost page" problem; cost awareness + a Billing budget alert; the tear-down off switch (`rm --recursive` then `rb`) learned but not run; ship `deploy.sh` through the loop; note CI runs pytest but not deploy (who/when deploys = Week 12)
+
+---
+
+## W11D5.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: Friday review — clean deploy from empty db to a public URL (three commands), demoed on Vincent's own machine; the security narration (IAM user / read-only public / keys in `~/.aws/`); the budget alert + off-switch check; cloud-shaped break-and-catch (403 / stale site that CI can't catch — read the live system, not the test); Claude-judging a `--cache-control` deploy change; "least privilege, twice" (IAM user + bucket policy); Week 11 retrospective; bridge to Week 12
+
+---
+
+## W12D1.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: Week 12 begins — CI vs CD; a key for the robot stored as GitHub Actions encrypted secrets (`${{ secrets.X }}` as a pointer, not a value; the `.env` idea hosted by GitHub); `.github/workflows/deploy.yml` deploying on push to `main` only (`aws-actions/configure-aws-credentials`, build, `s3 sync --delete`); watch a merge auto-publish with nobody running `deploy.sh`
+
+---
+
+## W12D2.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: the guardrail — the gap (deploy fires regardless of test result); combine into one "Test and Deploy" workflow with `deploy` declaring `needs: test` and `if: github.ref == 'refs/heads/main'`; remove the redundant `ci.yml` and re-point branch protection; prove it by trying to ship a red change and watching `deploy` get *skipped*; "can't merge red" vs "can't deploy red"; optional `schedule:` cron
+
+---
+
+## W12D3.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: foundations day — the whole arc as two journeys (Journey 1 = the build pipeline `brands.yaml`→S3; Journey 2 = a visitor's request running *none* of your code, which is what "static" means); what "deployed" actually means (a property of where a copy lives); CI vs CD lived, and why the course order (tests→gate→deploy→automate) was deliberate; the twelve-week map; no-AI synthesis quiz
+
+---
+
+## W12D4.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: the capstone build (dress rehearsal) — clean pipeline run empty db → built site + green suite; ship a real change through the *full* branch→PR→CI→merge→auto-deploy loop, hands off for the robot deploy; finalize the project README for Weeks 9–12 (static site, AWS, CI/CD) against the clone-without-asking test; a Friday pre-flight checklist
+
+---
+
+## W12D5.md
+
+### v1.0.0 — 2026-06-18
+- Initial release: course finale — full demo empty db → robot-deployed public site with whole-arc narration (the two journeys); final grounding judgment on a live public brief; the grand break-and-catch across the whole stack (diagnose which *layer*: code/build/infra/deploy, and which catcher owns it); Claude-judging the finished system's "what to improve next"; the big course retrospective (Week-1-me vs now, the Edit habit, how I work with AI, what I'd build next); Course 2 preview (FastAPI/Docker/dynamic backend/CloudFront)
