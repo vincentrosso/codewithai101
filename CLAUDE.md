@@ -8,7 +8,7 @@ A curriculum repo for a 12-week self-paced programming course. Content is pure m
 
 ## Structure
 
-Each week's content is broken into daily lesson files at the root, named `WxDy.md`. **All twelve weeks are written** (W01D1 through W12D5; Week 1 is four days, Weeks 2+ are five — 59 days total). Weeks 9–12: W9 static site (render briefs to HTML, view locally), W10 branches/PRs/CI, W11 deploy to S3, W12 CI/CD auto-deploy + finale. The course **closes at Week 12**; Brand Lens has no runtime backend, so the deploy is a static site on S3 (not a FastAPI server — that, plus Docker/Fargate, is deferred to a Course 2; see the README's "Course 2" section).
+Each week's content is broken into daily lesson files at the root, named `WxxDy.md` — the **week number is zero-padded to two digits** (W01–W12) so files sort correctly in a plain file listing; the day is single-digit (D1–D5). Cross-references between lessons use the same padded token. **All twelve weeks are written** (W01D1 through W12D5; Week 1 is four days, Weeks 2+ are five — 59 days total). Weeks 9–12: W9 static site (render briefs to HTML, view locally), W10 branches/PRs/CI, W11 deploy to S3, W12 CI/CD auto-deploy + finale. The course **closes at Week 12**; Brand Lens has no runtime backend, so the deploy is a static site on S3 (not a FastAPI server — that, plus Docker/Fargate, is deferred to a Course 2; see the README's "Course 2" section).
 
 ```
 W01D1.md … W12D5.md — daily lessons (the day count restarts at "day N:" in commit msgs; W8 = days 35–39, W12 = days 55–59)
