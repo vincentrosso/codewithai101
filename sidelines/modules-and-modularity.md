@@ -12,7 +12,7 @@ This pairs with [beautifulsoup.md](beautifulsoup.md) — that sideline is about 
 You've now done two things that are flavors of the same idea:
 
 1. Written `from bs4 import BeautifulSoup` to use someone else's code.
-2. Written `from fetch import fetch_one` to reach into your own other file (W3D2).
+2. Written `from fetch import fetch_one` to reach into your own other file (W03D2).
 
 Both are *imports*. Both rely on Python's module system. And both are instances of a much older programming idea: **modularity** — splitting a system into pieces with clear boundaries.
 
@@ -118,7 +118,7 @@ A modular system has parts that:
 3. **Hide their internals.** Whatever a module does to accomplish its job is its own business. Other code shouldn't depend on those internals.
 4. **Can be replaced.** If `parse.py` works only on English-language pages today, a future `parse.py` that also handles Korean text can be a drop-in replacement — as long as it preserves the interface.
 
-When you split `fetch_many.py` into `fetch.py`, `parse.py`, and `runner.py` on W3D2, you applied this principle. Fetching is one thing. Parsing is another. Orchestrating is a third. Each file does its one thing.
+When you split `fetch_many.py` into `fetch.py`, `parse.py`, and `runner.py` on W03D2, you applied this principle. Fetching is one thing. Parsing is another. Orchestrating is a third. Each file does its one thing.
 
 ### Why it matters
 
@@ -126,7 +126,7 @@ Three concrete payoffs:
 
 **Replaceability.** If you swap BeautifulSoup for `lxml` directly, only `parse.py` changes. `fetch.py` and `runner.py` don't know `parse.py` uses BeautifulSoup at all. The boundary protects them.
 
-**Testability.** You can test `parse_page(html, url)` by feeding it a hand-written HTML string. No network, no file I/O, no LLMs. The function is pure: same input, same output. Pure functions are the easiest things in programming to be sure are correct. (You'll see exactly this on [W5D1](../W5D1.md) — your first pytest test is against `parse_page` for this reason.)
+**Testability.** You can test `parse_page(html, url)` by feeding it a hand-written HTML string. No network, no file I/O, no LLMs. The function is pure: same input, same output. Pure functions are the easiest things in programming to be sure are correct. (You'll see exactly this on [W05D1](../W05D1.md) — your first pytest test is against `parse_page` for this reason.)
 
 **Comprehension.** When you open a 200-line `fetch_many.py`, you have to understand 200 lines to understand any one of them. When you open a 30-line `parse.py`, you have to understand 30. Modular code is *kinder to your future self*.
 
@@ -159,7 +159,7 @@ When you write code from now on, ask:
 - **What does this function take in, and what does it give back?** If the answer is hard to describe, the function is doing too much.
 - **If I had to throw away half of this and rewrite it, where would the seams be?** Those seams are where the modules want to be.
 
-Don't over-apply this. A 50-line script doesn't need three files. A 500-line script almost certainly does. `fetch_many.py` was at the boundary on W3D1 — splitting it on W3D2 was the right call. Splitting it on W1D4 would have been premature.
+Don't over-apply this. A 50-line script doesn't need three files. A 500-line script almost certainly does. `fetch_many.py` was at the boundary on W03D1 — splitting it on W03D2 was the right call. Splitting it on W01D4 would have been premature.
 
 ---
 

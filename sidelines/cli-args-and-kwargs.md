@@ -120,7 +120,7 @@ print(args.input, args.limit, args.verbose)
 
 ### When you'd reach for it
 
-Anything you'd run more than three times from the terminal. Anything with more than one or two optional arguments. Anything someone other than you will run. In practice: every CLI in this course from W3D4 onward.
+Anything you'd run more than three times from the terminal. Anything with more than one or two optional arguments. Anything someone other than you will run. In practice: every CLI in this course from W03D4 onward.
 
 ---
 

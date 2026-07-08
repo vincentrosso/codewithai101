@@ -74,7 +74,7 @@ soup.find("a", attrs={"class": "primary"})
 soup.find("link", attrs={"rel": "canonical"})
 ```
 
-`name` is the tag name. `attrs` is a dict of attributes that must match. Returns a Tag or `None`. This is the form you've been using on W2D4 and W3D1 to extract meta tags.
+`name` is the tag name. `attrs` is a dict of attributes that must match. Returns a Tag or `None`. This is the form you've been using on W02D4 and W03D1 to extract meta tags.
 
 ### `soup.find_all(name, attrs={...})` — every match
 

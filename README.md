@@ -15,10 +15,10 @@ Week 1 is intentionally **AI-free**. The goal is to build the muscle that lets t
 
 | Day | Focus |
 |-----|-------|
-| [Week 1, Day 1](W1D1.md) | Toolchain setup: Sublime, Ghostty, Spotlight, terminal basics, GitHub account, first `hello.py` |
-| [Week 1, Day 2](W1D2.md) | Homebrew + modern Python, git config, SSH to GitHub, first repo, interactive Python |
-| [Week 1, Day 3](W1D3.md) | Virtual environments, pip, `requests`, BeautifulSoup, fetching a webpage, saving to JSON |
-| [Week 1, Day 4](W1D4.md) | Lists, for loops, `try`/`except`, batch processing — the seed of the capstone |
+| [Week 1, Day 1](W01D1.md) | Toolchain setup: Sublime, Ghostty, Spotlight, terminal basics, GitHub account, first `hello.py` |
+| [Week 1, Day 2](W01D2.md) | Homebrew + modern Python, git config, SSH to GitHub, first repo, interactive Python |
+| [Week 1, Day 3](W01D3.md) | Virtual environments, pip, `requests`, BeautifulSoup, fetching a webpage, saving to JSON |
+| [Week 1, Day 4](W01D4.md) | Lists, for loops, `try`/`except`, batch processing — the seed of the capstone |
 
 ## Week 2
 
@@ -26,11 +26,11 @@ Claude (browser, claude.ai) comes online — under two strict rules: ask Claude 
 
 | Day | Focus |
 |-----|-------|
-| [Week 2, Day 1](W2D1.md) | Catch up on Week 1 leftovers; first Claude session with strict rules |
-| [Week 2, Day 2](W2D2.md) | Functions and dictionaries; refactor `fetch_many.py` into `fetch_one(url)` |
-| [Week 2, Day 3](W2D3.md) | Foundations: HTTP, types, status codes — no code, mini-quiz, no AI |
-| [Week 2, Day 4](W2D4.md) | Richer parsing: meta description, og:title, h1, canonical URL |
-| [Week 2, Day 5](W2D5.md) | CSV output, sorting; mentor review with a Claude-judging twist |
+| [Week 2, Day 1](W02D1.md) | Catch up on Week 1 leftovers; first Claude session with strict rules |
+| [Week 2, Day 2](W02D2.md) | Functions and dictionaries; refactor `fetch_many.py` into `fetch_one(url)` |
+| [Week 2, Day 3](W02D3.md) | Foundations: HTTP, types, status codes — no code, mini-quiz, no AI |
+| [Week 2, Day 4](W02D4.md) | Richer parsing: meta description, og:title, h1, canonical URL |
+| [Week 2, Day 5](W02D5.md) | CSV output, sorting; mentor review with a Claude-judging twist |
 
 ## Week 3
 
@@ -38,11 +38,11 @@ Move from a flat URL list to a structured `brands.yaml` config; split the script
 
 | Day | Focus |
 |-----|-------|
-| [Week 3, Day 1](W3D1.md) | YAML config: `brands.yaml` with brand → pages; aggregate results per brand |
-| [Week 3, Day 2](W3D2.md) | Modules: split into `fetch.py`, `parse.py`, `runner.py`; `__name__ == "__main__"` |
-| [Week 3, Day 3](W3D3.md) | Foundations: file I/O, paths, encodings — no code, no AI, mini-quiz |
-| [Week 3, Day 4](W3D4.md) | Real CLI: `argparse` with `--input`, `--output`, `--limit`, `--csv`; flat CSV returns |
-| [Week 3, Day 5](W3D5.md) | Mentor review — brand-level pipeline demo and bug hunt |
+| [Week 3, Day 1](W03D1.md) | YAML config: `brands.yaml` with brand → pages; aggregate results per brand |
+| [Week 3, Day 2](W03D2.md) | Modules: split into `fetch.py`, `parse.py`, `runner.py`; `__name__ == "__main__"` |
+| [Week 3, Day 3](W03D3.md) | Foundations: file I/O, paths, encodings — no code, no AI, mini-quiz |
+| [Week 3, Day 4](W03D4.md) | Real CLI: `argparse` with `--input`, `--output`, `--limit`, `--csv`; flat CSV returns |
+| [Week 3, Day 5](W03D5.md) | Mentor review — brand-level pipeline demo and bug hunt |
 
 ## Week 4
 
@@ -50,11 +50,11 @@ Tyler graduates from Claude in a browser tab to **Claude Code** — the same Cla
 
 | Day | Focus |
 |-----|-------|
-| [Week 4, Day 1](W4D1.md) | Install Claude Code; first session; new rules; read-only tour |
-| [Week 4, Day 2](W4D2.md) | Claude Code as a mirror — explain `runner.py`, `fetch.py`, `parse.py` |
-| [Week 4, Day 3](W4D3.md) | Foundations: reading diffs — no code, no AI, mini-quiz |
-| [Week 4, Day 4](W4D4.md) | First reviewed edit: add `--brand` flag to `runner.py` |
-| [Week 4, Day 5](W4D5.md) | Questions you can't answer yet — list, categorize, retrospective |
+| [Week 4, Day 1](W04D1.md) | Install Claude Code; first session; new rules; read-only tour |
+| [Week 4, Day 2](W04D2.md) | Claude Code as a mirror — explain `runner.py`, `fetch.py`, `parse.py` |
+| [Week 4, Day 3](W04D3.md) | Foundations: reading diffs — no code, no AI, mini-quiz |
+| [Week 4, Day 4](W04D4.md) | First reviewed edit: add `--brand` flag to `runner.py` |
+| [Week 4, Day 5](W04D5.md) | Questions you can't answer yet — list, categorize, retrospective |
 
 ## Week 5
 
@@ -62,11 +62,11 @@ Tests enter the project. With Claude Code now editing real files, Tyler needs a 
 
 | Day | Focus |
 |-----|-------|
-| [Week 5, Day 1](W5D1.md) | First `pytest` test, AAA shape, green → red → green cycle |
-| [Week 5, Day 2](W5D2.md) | Edge cases, `conftest.py`, `@pytest.fixture` for shared setup |
-| [Week 5, Day 3](W5D3.md) | Foundations: units, pure vs side-effectful, test pyramid — no code, no AI, mini-quiz |
-| [Week 5, Day 4](W5D4.md) | Mocking the network: `monkeypatch` + a fake response, happy path and error path |
-| [Week 5, Day 5](W5D5.md) | Mentor review — break-and-catch, judging a Claude-written test, Week 5 retrospective |
+| [Week 5, Day 1](W05D1.md) | First `pytest` test, AAA shape, green → red → green cycle |
+| [Week 5, Day 2](W05D2.md) | Edge cases, `conftest.py`, `@pytest.fixture` for shared setup |
+| [Week 5, Day 3](W05D3.md) | Foundations: units, pure vs side-effectful, test pyramid — no code, no AI, mini-quiz |
+| [Week 5, Day 4](W05D4.md) | Mocking the network: `monkeypatch` + a fake response, happy path and error path |
+| [Week 5, Day 5](W05D5.md) | Mentor review — break-and-catch, judging a Claude-written test, Week 5 retrospective |
 
 ## Week 6
 
@@ -74,23 +74,23 @@ CSV and JSON files give way to a real database. Tyler moves the pipeline onto SQ
 
 | Day | Focus |
 |-----|-------|
-| [Week 6, Day 1](W6D1.md) | SQLite + `sqlite3`; schema (`brands`, `pages`), `?` placeholders, insert rows, read back with the CLI |
-| [Week 6, Day 2](W6D2.md) | Querying: `SELECT`, `WHERE`, `IS NULL`, `COUNT`, `ORDER BY`, `GROUP BY`, first `JOIN`; queries from Python |
-| [Week 6, Day 3](W6D3.md) | Foundations: tables as lists-of-dicts, primary/foreign keys, normalization, `NULL` — no code, no AI, mini-quiz |
-| [Week 6, Day 4](W6D4.md) | Wire the db into `runner.py`; the re-run problem + upsert; test `db.py` with an in-memory `:memory:` fixture |
-| [Week 6, Day 5](W6D5.md) | Mentor review — query demo, break-and-catch, judge a Claude-written query (`IS NOT NULL`, `?` safety) |
+| [Week 6, Day 1](W06D1.md) | SQLite + `sqlite3`; schema (`brands`, `pages`), `?` placeholders, insert rows, read back with the CLI |
+| [Week 6, Day 2](W06D2.md) | Querying: `SELECT`, `WHERE`, `IS NULL`, `COUNT`, `ORDER BY`, `GROUP BY`, first `JOIN`; queries from Python |
+| [Week 6, Day 3](W06D3.md) | Foundations: tables as lists-of-dicts, primary/foreign keys, normalization, `NULL` — no code, no AI, mini-quiz |
+| [Week 6, Day 4](W06D4.md) | Wire the db into `runner.py`; the re-run problem + upsert; test `db.py` with an in-memory `:memory:` fixture |
+| [Week 6, Day 5](W06D5.md) | Mentor review — query demo, break-and-catch, judge a Claude-written query (`IS NOT NULL`, `?` safety) |
 
 ## Week 7
 
-Claude moves from a tool Tyler *talks to* into a library his *code calls*. The week covers the Anthropic SDK, API keys in a gitignored `.env`, structured JSON output (not prose) built from the W2D4 fields — each field finally tied to a concrete brand-evaluation question — and storing the resulting brief in the database. The LLM call is wrapped so it never crashes the run (the `fetch_one` contract again) and mocked in tests so the suite stays fast, offline, and free (the W5D4 technique, new target). By Friday Tyler is judging whether Claude's brief is *grounded* in the data or hallucinated.
+Claude moves from a tool Tyler *talks to* into a library his *code calls*. The week covers the Anthropic SDK, API keys in a gitignored `.env`, structured JSON output (not prose) built from the W02D4 fields — each field finally tied to a concrete brand-evaluation question — and storing the resulting brief in the database. The LLM call is wrapped so it never crashes the run (the `fetch_one` contract again) and mocked in tests so the suite stays fast, offline, and free (the W05D4 technique, new target). By Friday Tyler is judging whether Claude's brief is *grounded* in the data or hallucinated.
 
 | Day | Focus |
 |-----|-------|
-| [Week 7, Day 1](W7D1.md) | First API call; get a key, `.env` + `python-dotenv`, `anthropic` SDK; non-determinism across runs |
-| [Week 7, Day 2](W7D2.md) | Structured output: feed scraped fields, get back JSON; each W2D4 field → a brand-evaluation question |
-| [Week 7, Day 3](W7D3.md) | Foundations: APIs as HTTP, auth, tokens, what a model is/isn't, why you can't unit-test a real call — no code, no AI |
-| [Week 7, Day 4](W7D4.md) | Robust `summarize_brand` (never raises), store the brief in the db, mock the client in tests |
-| [Week 7, Day 5](W7D5.md) | Mentor review — judge brief grounding vs hallucination, break-and-catch, improve the prompt with Claude |
+| [Week 7, Day 1](W07D1.md) | First API call; get a key, `.env` + `python-dotenv`, `anthropic` SDK; non-determinism across runs |
+| [Week 7, Day 2](W07D2.md) | Structured output: feed scraped fields, get back JSON; each W02D4 field → a brand-evaluation question |
+| [Week 7, Day 3](W07D3.md) | Foundations: APIs as HTTP, auth, tokens, what a model is/isn't, why you can't unit-test a real call — no code, no AI |
+| [Week 7, Day 4](W07D4.md) | Robust `summarize_brand` (never raises), store the brief in the db, mock the client in tests |
+| [Week 7, Day 5](W07D5.md) | Mentor review — judge brief grounding vs hallucination, break-and-catch, improve the prompt with Claude |
 
 ## Week 8
 
@@ -98,11 +98,11 @@ The brief MVP. Everything Brand Lens produces has lived in a database where only
 
 | Day | Focus |
 |-----|-------|
-| [Week 8, Day 1](W8D1.md) | `jinja2` templates; `render_brief` (pure) vs `write_brief` (side effect); render one brand to `briefs/<slug>.md` |
-| [Week 8, Day 2](W8D2.md) | Render every brand from the database; the `json.dumps`/`loads` round trip; handle the no-brief case |
-| [Week 8, Day 3](W8D3.md) | Foundations: separation of concerns, project layout, dependencies + reproducibility, the README — no code, no AI |
-| [Week 8, Day 4](W8D4.md) | Test `render_brief` (no mocking — it's pure); pin `requirements.txt`; write the project README |
-| [Week 8, Day 5](W8D5.md) | The MVP demo — clean run from empty db, grounding review on the finished brief, break-and-catch, milestone retro |
+| [Week 8, Day 1](W08D1.md) | `jinja2` templates; `render_brief` (pure) vs `write_brief` (side effect); render one brand to `briefs/<slug>.md` |
+| [Week 8, Day 2](W08D2.md) | Render every brand from the database; the `json.dumps`/`loads` round trip; handle the no-brief case |
+| [Week 8, Day 3](W08D3.md) | Foundations: separation of concerns, project layout, dependencies + reproducibility, the README — no code, no AI |
+| [Week 8, Day 4](W08D4.md) | Test `render_brief` (no mocking — it's pure); pin `requirements.txt`; write the project README |
+| [Week 8, Day 5](W08D5.md) | The MVP demo — clean run from empty db, grounding review on the finished brief, break-and-catch, milestone retro |
 
 ## Week 9 — Brand Lens goes live (static site)
 
@@ -110,11 +110,11 @@ The briefs stop being files only a SQL query can see and become a real site Tyle
 
 | Day | Focus |
 |-----|-------|
-| [Week 9, Day 1](W9D1.md) | Render each brief as a standalone HTML page (not markdown); a per-brand HTML template; write `site/<slug>.html` and open it in the browser |
-| [Week 9, Day 2](W9D2.md) | An index page: `site/index.html` listing every brand with links to each brief; a small shared CSS file; the site as a set of linked pages |
-| [Week 9, Day 3](W9D3.md) | Foundations: how a browser renders HTML/CSS, what "static" means (files vs a running program), `file://` vs a local server, why `python -m http.server` exists, relative vs absolute links — no code, no AI, mini-quiz |
-| [Week 9, Day 4](W9D4.md) | `build_site.py` — regenerate the whole `site/` from the db in one command (empty → full site); handle the no-brief brand; test the pure render functions (no mocking, the W8D4 pattern) |
-| [Week 9, Day 5](W9D5.md) | Mentor review — demo the local site, break-and-catch (a broken template or dead link), judge a Claude-written template/CSS, retrospective |
+| [Week 9, Day 1](W09D1.md) | Render each brief as a standalone HTML page (not markdown); a per-brand HTML template; write `site/<slug>.html` and open it in the browser |
+| [Week 9, Day 2](W09D2.md) | An index page: `site/index.html` listing every brand with links to each brief; a small shared CSS file; the site as a set of linked pages |
+| [Week 9, Day 3](W09D3.md) | Foundations: how a browser renders HTML/CSS, what "static" means (files vs a running program), `file://` vs a local server, why `python -m http.server` exists, relative vs absolute links — no code, no AI, mini-quiz |
+| [Week 9, Day 4](W09D4.md) | `build_site.py` — regenerate the whole `site/` from the db in one command (empty → full site); handle the no-brief brand; test the pure render functions (no mocking, the W08D4 pattern) |
+| [Week 9, Day 5](W09D5.md) | Mentor review — demo the local site, break-and-catch (a broken template or dead link), judge a Claude-written template/CSS, retrospective |
 
 ## Week 10 — Branches, PRs, and the gate (CI)
 
@@ -170,8 +170,8 @@ Reference material outside the day-by-day flow. Read when curious; not paced.
 | [List comprehensions](sidelines/list-comprehensions.md) | The pattern they replace, when to use them, when not to — includes a writing drill, no AI |
 | [Assembly and the stack of abstractions](sidelines/assembly.md) | Punch cards to LLMs — what's actually underneath your Python, why we stopped writing assembly, why it still matters |
 | [`sys.argv`, `argparse`, and `**kwargs`](sidelines/cli-args-and-kwargs.md) | Three things that look like "arguments" — what each one actually is, why argparse and kwargs are not alternatives, and the `do_work(**vars(args))` pattern |
-| [Why do unit tests?](sidelines/why-test.md) | The motivational "why bother" behind W5D3's mechanics — the five real reasons (regression alarm, trusting Claude Code's edits, executable docs, design pressure, speed), when *not* to test, and a reflection |
-| [The relational model](sidelines/relational-model.md) | Databases from set theory up — the formal floor under W6D3. Three sittings: sets/tuples/relations (a table *is* a subset of a Cartesian product), keys + functional dependencies + normalization as theorems (your 3NF instinct, derived), relational algebra (σ/π/⋈) + where SQL bends the math (bags, three-valued NULL logic) |
+| [Why do unit tests?](sidelines/why-test.md) | The motivational "why bother" behind W05D3's mechanics — the five real reasons (regression alarm, trusting Claude Code's edits, executable docs, design pressure, speed), when *not* to test, and a reflection |
+| [The relational model](sidelines/relational-model.md) | Databases from set theory up — the formal floor under W06D3. Three sittings: sets/tuples/relations (a table *is* a subset of a Cartesian product), keys + functional dependencies + normalization as theorems (your 3NF instinct, derived), relational algebra (σ/π/⋈) + where SQL bends the math (bags, three-valued NULL logic) |
 
 ## Friday review
 

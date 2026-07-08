@@ -98,7 +98,7 @@ Plug in:
 results = [line.strip() for line in f if line.strip()]
 ```
 
-Done. That's the line from your `urls.txt` loader on W2D1 — written out the long way, then folded down.
+Done. That's the line from your `urls.txt` loader on W02D1 — written out the long way, then folded down.
 
 ---
 
@@ -173,7 +173,7 @@ with open("urls.txt") as f:
             urls.append(line.strip())
 ```
 
-Comprehension form (the line you saw on W2D1):
+Comprehension form (the line you saw on W02D1):
 
 ```python
 with open("urls.txt") as f:

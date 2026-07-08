@@ -8,10 +8,10 @@ A curriculum repo for a 12-week self-paced programming course. Content is pure m
 
 ## Structure
 
-Each week's content is broken into daily lesson files at the root, named `WxDy.md`. **All twelve weeks are written** (W1D1 through W12D5; Week 1 is four days, Weeks 2+ are five — 59 days total). Weeks 9–12: W9 static site (render briefs to HTML, view locally), W10 branches/PRs/CI, W11 deploy to S3, W12 CI/CD auto-deploy + finale. The course **closes at Week 12**; Brand Lens has no runtime backend, so the deploy is a static site on S3 (not a FastAPI server — that, plus Docker/Fargate, is deferred to a Course 2; see the README's "Course 2" section).
+Each week's content is broken into daily lesson files at the root, named `WxDy.md`. **All twelve weeks are written** (W01D1 through W12D5; Week 1 is four days, Weeks 2+ are five — 59 days total). Weeks 9–12: W9 static site (render briefs to HTML, view locally), W10 branches/PRs/CI, W11 deploy to S3, W12 CI/CD auto-deploy + finale. The course **closes at Week 12**; Brand Lens has no runtime backend, so the deploy is a static site on S3 (not a FastAPI server — that, plus Docker/Fargate, is deferred to a Course 2; see the README's "Course 2" section).
 
 ```
-W1D1.md … W12D5.md — daily lessons (the day count restarts at "day N:" in commit msgs; W8 = days 35–39, W12 = days 55–59)
+W01D1.md … W12D5.md — daily lessons (the day count restarts at "day N:" in commit msgs; W8 = days 35–39, W12 = days 55–59)
 README.md          — course overview, format, full week-by-week table, sidelines index, future ideas
 CHANGELOG.md       — per-file version history (semver; default bump = patch)
 sidelines/         — reference material outside the day-by-day flow (read when curious, not paced)
@@ -29,7 +29,7 @@ Starting Week 2, AI tools come online. Lessons from that point can include AI-as
 
 ## Capstone
 
-The capstone project is **Brand Lens** — a tool that helps Korean brands evaluate their US market presence using web scraping, structured data, and LLM-generated briefs. Every day's lesson is designed to advance this project. W1D3 introduces fetching and saving a single URL; W1D4 extends it to batch processing; the pipeline then grows a YAML config + modules (W3), a test suite (W5), a SQLite store (W6), LLM summarization (W7), and a rendered per-brand brief — the **MVP milestone reached at the end of Week 8**. The capstone is the throughline — lessons should not introduce concepts without connecting them to it.
+The capstone project is **Brand Lens** — a tool that helps Korean brands evaluate their US market presence using web scraping, structured data, and LLM-generated briefs. Every day's lesson is designed to advance this project. W01D3 introduces fetching and saving a single URL; W01D4 extends it to batch processing; the pipeline then grows a YAML config + modules (W3), a test suite (W5), a SQLite store (W6), LLM summarization (W7), and a rendered per-brand brief — the **MVP milestone reached at the end of Week 8**. The capstone is the throughline — lessons should not introduce concepts without connecting them to it.
 
 ## Learner Profile
 
@@ -37,7 +37,7 @@ Business background, no prior coding experience. Explanations should avoid assum
 
 ## Lesson Format
 
-Each `WxDy.md` file (e.g. `W1D1.md`, `W3D5.md`) follows a consistent structure: goal + time budget → numbered sections with inline terminal commands → commit checkpoint → journal prompt → "what done looks like" checklist. Maintain this structure when adding new days. Journal prompts should ask for genuine reflection — name specific lines or concepts the learner can't yet explain — not just factual recall. Avoid vague framings like "what felt magical."
+Each `WxDy.md` file (e.g. `W01D1.md`, `W03D5.md`) follows a consistent structure: goal + time budget → numbered sections with inline terminal commands → commit checkpoint → journal prompt → "what done looks like" checklist. Maintain this structure when adding new days. Journal prompts should ask for genuine reflection — name specific lines or concepts the learner can't yet explain — not just factual recall. Avoid vague framings like "what felt magical."
 
 ### Required journal sections
 

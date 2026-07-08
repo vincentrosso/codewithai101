@@ -1,7 +1,7 @@
 # The Relational Model — Databases from Set Theory Up
 *v1.0.0*
 
-This is a sideline reference, not a paced lesson. It's the longest and most abstract piece of writing in the course, and it answers a question W6D3 deliberately ducked. On that day, talking about why the brand name lives in `brands` and not in every `pages` row, the lesson said: *"You don't need the formal theory. You need the instinct."* That's true. You can build good schemas on instinct alone, the way you can drive a car without knowing what a camshaft does.
+This is a sideline reference, not a paced lesson. It's the longest and most abstract piece of writing in the course, and it answers a question W06D3 deliberately ducked. On that day, talking about why the brand name lives in `brands` and not in every `pages` row, the lesson said: *"You don't need the formal theory. You need the instinct."* That's true. You can build good schemas on instinct alone, the way you can drive a car without knowing what a camshaft does.
 
 But there *is* a formal theory under that instinct, and it is unusually beautiful — one of the few places in computing where a working, billion-dollar technology sits directly on top of a piece of pure mathematics you could explain to a 19th-century logician. A database table is not *like* a mathematical object. It *is* one. This sideline walks from the bottom — what a set is — up to the SQL you've already been writing, and shows you that the whole tower is one idea wearing different clothes at each floor.
 
@@ -9,7 +9,7 @@ There's no time budget and nothing to commit. But it's built as **three sittings
 
 > A warning, O my brothers: this is real horrorshow once it clicks, but it does not click on the first read of the first paragraph. If a definition slides off, keep going to the concrete brand-lens example underneath it — the example is where it sticks.
 
-**Companion:** [W6D3.md](../W6D3.md) is the instinct version of everything here. That day is the *what*; this sideline is the *why it's true*. Read this after W6D3, not instead of it.
+**Companion:** [W06D3.md](../W06D3.md) is the instinct version of everything here. That day is the *what*; this sideline is the *why it's true*. Read this after W06D3, not instead of it.
 
 ---
 
@@ -50,7 +50,7 @@ Hold onto **subset** especially. It's the word that, four pages from now, will t
 
 ## 1.2 Why "no order, no duplicates" should sound familiar
 
-Go back to W6D3. It made a quiet, important claim about tables: *"rows have no reliable order."* You don't ask for "the third row"; you ask for the row *where* `slug = 'innisfree'`. And the schema's `PRIMARY KEY` and `UNIQUE` rules exist precisely to forbid two identical rows.
+Go back to W06D3. It made a quiet, important claim about tables: *"rows have no reliable order."* You don't ask for "the third row"; you ask for the row *where* `slug = 'innisfree'`. And the schema's `PRIMARY KEY` and `UNIQUE` rules exist precisely to forbid two identical rows.
 
 No order. No duplicates. Those are not database conveniences someone bolted on. They are the *defining properties of a set* — and that is the first clue that a table is a set of something. The question is: a set of *what*? The rows aren't numbers like `{1, 2, 3}`. Each row is a little bundle — a url, a title, a status, all together. We need a mathematical object for "a bundle of values in a fixed order." That object is a tuple.
 
@@ -67,7 +67,7 @@ Tuples are the opposite of sets in the two ways that matter:
 - **Order matters.** `(200, "Innisfree")` is a different tuple from `("Innisfree", 200)`. The first slot means one thing, the second another.
 - **Duplicates are fine.** `(200, 200)` is a perfectly good 2-tuple.
 
-You've met these in Python too — it's the `(brand_slug,)` with the lonely trailing comma that W6D2 made you write, and the records you've been passing around since Week 2. A tuple with *n* slots is an **n-tuple**; the number of slots is its **arity**. The row above is a 3-tuple of arity 3.
+You've met these in Python too — it's the `(brand_slug,)` with the lonely trailing comma that W06D2 made you write, and the records you've been passing around since Week 2. A tuple with *n* slots is an **n-tuple**; the number of slots is its **arity**. The row above is a 3-tuple of arity 3.
 
 So now we can say the shape of the thing precisely. A row is a tuple. A table is a *set of tuples* — unordered (the set part: no row is "first"), with no duplicate tuples (the set part again: `UNIQUE`/`PRIMARY KEY`), where each tuple is an ordered bundle of one value per column (the tuple part). 
 
@@ -131,7 +131,7 @@ Your `pages` table is a subset of `(all possible ids) × (all possible brand_slu
 
 Read it once more as plain English: **a table is the set of rows you've decided are true, drawn from the set of all rows that could be.** The schema names the domains (the shape); the data is the subset (the content).
 
-This is why, in §1.1, I told you to watch the word "subset." A table is a subset. The whole edifice — SQLite, PostgreSQL, the query you wrote on W6D2, the parking-ticket database at City Hall — is built on "a subset of a Cartesian product of sets." Nothing more exotic than that.
+This is why, in §1.1, I told you to watch the word "subset." A table is a subset. The whole edifice — SQLite, PostgreSQL, the query you wrote on W06D2, the parking-ticket database at City Hall — is built on "a subset of a Cartesian product of sets." Nothing more exotic than that.
 
 ## 1.7 The vocabulary, lined up
 
@@ -152,7 +152,7 @@ Two of these have proper names worth knowing because people use them in conversa
 - **Cardinality** — the row count. "This table has high cardinality" means lots of rows.
 - **Degree** (or **arity**) — the column count. `pages` is a relation of degree 11.
 
-One refinement, so the pedants don't get you. In *pure* set theory a tuple's slots are identified by *position* (first, second, third), so order of columns would matter. Codd's actual model improves on this: it identifies slots by *name* (`url`, `status`) rather than position, so a relation is really a set of mappings from attribute-names to values — closer to "a set of dicts" than "a set of ordered tuples." That's why W6D3 could say a row is a dict and be right. The set-of-tuples picture is the cleaner one to *learn* the idea from; the set-of-named-mappings picture is the one Codd actually shipped. Same skeleton, one wearing labels.
+One refinement, so the pedants don't get you. In *pure* set theory a tuple's slots are identified by *position* (first, second, third), so order of columns would matter. Codd's actual model improves on this: it identifies slots by *name* (`url`, `status`) rather than position, so a relation is really a set of mappings from attribute-names to values — closer to "a set of dicts" than "a set of ordered tuples." That's why W06D3 could say a row is a dict and be right. The set-of-tuples picture is the cleaner one to *learn* the idea from; the set-of-named-mappings picture is the one Codd actually shipped. Same skeleton, one wearing labels.
 
 ## 1.8 A bit of history, told with the appropriate gravity
 
@@ -160,7 +160,7 @@ It is worth a paragraph of arch, Barry-Lyndon-ish hindsight to appreciate how re
 
 In 1970 a mathematician at IBM named **Edgar F. ("Ted") Codd** published a paper with the dry title *"A Relational Model of Data for Large Shared Data Banks."* His move was audacious in its simplicity: *stop navigating, start describing.* Model the data as relations — sets of tuples, the objects you just met — and let people ask for what they want using operations from set theory and logic, while the machine works out how to fetch it. Separate the *question* from the *plumbing*. IBM, which was selling the pointer-based systems, was in no hurry to listen to him; it took most of a decade and a rival (a young Larry Ellison, who read Codd's paper and founded what became Oracle) before the idea became the industry. Codd got the Turing Award for it in 1981.
 
-Every time you write `SELECT … WHERE …` instead of writing a loop that walks pointers, you are cashing the check Codd wrote in 1970. The reason your W6D2 questions were each one line instead of "another little program" (as W6D1 put it) is that he moved the navigation into the machine. Hold that thought; it's the whole content of Sitting 3.
+Every time you write `SELECT … WHERE …` instead of writing a loop that walks pointers, you are cashing the check Codd wrote in 1970. The reason your W06D2 questions were each one line instead of "another little program" (as W06D1 put it) is that he moved the navigation into the machine. Hold that thought; it's the whole content of Sitting 3.
 
 ---
 
@@ -174,13 +174,13 @@ Open `journal/relational-1.md`. Reason these out from the definitions above; che
 
 3. Finish this sentence in your own words, no notes: "My `pages` table is a **subset** of ______, and choosing which rows are *in* that subset is the act of ______."
 
-4. **Predict before you check.** Your `pages` table — is its *degree* (column count) likely to change much over the life of the project, or its *cardinality* (row count)? Which one grows every time `runner.py` fetches a page? Run `SELECT COUNT(*) FROM pages;` to see today's cardinality, then in your journal say whether the number you guessed was high or low, and why. (Guessing wrong and writing the correction *is* the exercise — same habit W6D3 praised.)
+4. **Predict before you check.** Your `pages` table — is its *degree* (column count) likely to change much over the life of the project, or its *cardinality* (row count)? Which one grows every time `runner.py` fetches a page? Run `SELECT COUNT(*) FROM pages;` to see today's cardinality, then in your journal say whether the number you guessed was high or low, and why. (Guessing wrong and writing the correction *is* the exercise — same habit W06D3 praised.)
 
 ---
 
 # Sitting 2 — Keys and the Theorems Hiding Inside Your Instinct
 
-Sitting 1 told you what a table *is*. Sitting 2 is about what makes a table *good* — and here's the payoff promised at the top: the "instinct" W6D3 gave you ("when a value is copied across rows, it wants its own table") is not folk wisdom. It is a precise theorem with a precise name (Third Normal Form), built on a precise idea (functional dependency). You already obey the theorem. Today you learn that it *is* one.
+Sitting 1 told you what a table *is*. Sitting 2 is about what makes a table *good* — and here's the payoff promised at the top: the "instinct" W06D3 gave you ("when a value is copied across rows, it wants its own table") is not folk wisdom. It is a precise theorem with a precise name (Third Normal Form), built on a precise idea (functional dependency). You already obey the theorem. Today you learn that it *is* one.
 
 ## 2.1 Functional dependency — "this determines that"
 
@@ -210,7 +210,7 @@ Some FDs are trivial (`slug → slug` — knowing slug obviously tells you slug)
 
 ## 2.2 Keys, defined properly at last
 
-W6D3 told you a primary key is "a column whose value is unique to each row." True, but loose. With functional dependencies we can say it exactly, and the precision pays off immediately.
+W06D3 told you a primary key is "a column whose value is unique to each row." True, but loose. With functional dependencies we can say it exactly, and the precision pays off immediately.
 
 A **superkey** is a set of attributes that functionally determines *every* attribute in the relation. In `pages`, `id` alone determines every other column — give me the `id`, I can tell you the url, title, status, all of it. So:
 
@@ -222,13 +222,13 @@ id → (every column in pages)        →  id is a superkey
 
 A **candidate key** is a superkey with no waste — a *minimal* one, where dropping any attribute would break the determination. `id` is a candidate key (you can't drop anything; it's a single column). `url` is a second candidate key. `{id, title}` is *not* a candidate key, because `title` is dead weight — `id` alone already does the job.
 
-A **primary key** is simply the candidate key you *elect* to be the official identifier. `pages` has two candidate keys, `id` and `url`; the schema crowned `id` as `PRIMARY KEY` and left `url` as a `UNIQUE` (a candidate key not chosen). Nothing mathematical distinguishes them; the choice is a design judgment — W6D3's natural-vs-surrogate decision, now with proper vocabulary under it.
+A **primary key** is simply the candidate key you *elect* to be the official identifier. `pages` has two candidate keys, `id` and `url`; the schema crowned `id` as `PRIMARY KEY` and left `url` as a `UNIQUE` (a candidate key not chosen). Nothing mathematical distinguishes them; the choice is a design judgment — W06D3's natural-vs-surrogate decision, now with proper vocabulary under it.
 
 So the hierarchy, smallest to largest: **candidate key** (minimal determiner) → one is chosen as **primary key** → any superset is a **superkey**. A key is just a functional dependency whose left side is the whole row's identity.
 
 ## 2.3 The anomalies — what duplication actually costs, formally
 
-W6D3 waved at this: copy the brand name into every page row and "data goes wrong." Let's make "goes wrong" exact, because the formalization is what justifies the normal forms in §2.4. Imagine the *bad* design W6D3 warned against — one flat table that jams brand info into every page:
+W06D3 waved at this: copy the brand name into every page row and "data goes wrong." Let's make "goes wrong" exact, because the formalization is what justifies the normal forms in §2.4. Imagine the *bad* design W06D3 warned against — one flat table that jams brand info into every page:
 
 ```
 pages_flat
@@ -280,7 +280,7 @@ brands(slug PK, name)              -- brand_slug → brand_name now lives here, 
 pages(id PK, brand_slug → brands.slug, url, title, …)  -- pages keeps only a pointer
 ```
 
-That is precisely the `brands` / `pages` split from W6D1. You did 3NF normalization in Week 6 and called it "giving the brand its own table." The foreign key `pages.brand_slug → brands.slug` is the seam of the decomposition. **The instinct and the theorem are the same act.**
+That is precisely the `brands` / `pages` split from W06D1. You did 3NF normalization in Week 6 and called it "giving the brand its own table." The foreign key `pages.brand_slug → brands.slug` is the seam of the decomposition. **The instinct and the theorem are the same act.**
 
 There's a famous one-line gloss of 3NF, and now you can read it as a sentence rather than a spell. Every non-key column must depend on:
 
@@ -296,7 +296,7 @@ Three clauses, three normal forms. (There's a tighter rung above 3NF called **Bo
 
 The single most useful thing to carry out of this sitting:
 
-| W6D3 said (instinct) | The theory says (formal) |
+| W06D3 said (instinct) | The theory says (formal) |
 |----------------------|--------------------------|
 | "name the row by a unique column" | candidate key: a minimal set of attributes that functionally determines all others |
 | "the slug determines the brand" | the functional dependency `slug → name` |
@@ -325,7 +325,7 @@ In `journal/relational-2.md`:
 
 # Sitting 3 — Relational Algebra, and Where SQL Quietly Bends the Math
 
-Sittings 1 and 2 were about data *at rest* — what a table is, what makes it well-formed. Sitting 3 is about data *in motion*: what happens when you ask a question. And it closes the loop, because the punchline is that the SQL you wrote on W6D2 is a thin coat of paint over a tiny algebra of set operations. Same move as the assembly sideline — peel one layer and find the next one down, all the way to the floor.
+Sittings 1 and 2 were about data *at rest* — what a table is, what makes it well-formed. Sitting 3 is about data *in motion*: what happens when you ask a question. And it closes the loop, because the punchline is that the SQL you wrote on W06D2 is a thin coat of paint over a tiny algebra of set operations. Same move as the assembly sideline — peel one layer and find the next one down, all the way to the floor.
 
 ## 3.1 An algebra whose values are tables
 
@@ -363,24 +363,24 @@ SELECT url, title FROM pages;
 
 (*The asterisk: in *pure* algebra, projection also removes any duplicate rows the column-dropping created, because the result is a set and sets can't hold duplicates. SQL, by default, does *not* — it keeps the duplicates unless you write `SELECT DISTINCT`. File that under §3.4, where SQL stops being a perfect set.)
 
-**Join (⋈) — stitch two tables together.** Written `R ⋈ S`: combine the rows of two tables wherever they match on shared values. This is the formal version of W6D3's "follow the foreign-key pointer." It's actually built from two even simpler steps:
+**Join (⋈) — stitch two tables together.** Written `R ⋈ S`: combine the rows of two tables wherever they match on shared values. This is the formal version of W06D3's "follow the foreign-key pointer." It's actually built from two even simpler steps:
 
 1. Take the **Cartesian product** `pages × brands` — yes, the very operation from §1.5. Every page paired with every brand. A 40-page, 5-brand database produces 200 nonsense pairs, most of them mismatched (Innisfree's page glued to Laneige's brand row).
 2. **Select** (σ) only the pairs that actually match: `σ_pages.brand_slug = brands.slug`. The nonsense pairs fall away; what remains is each page next to *its own* brand.
 
-So a join is *just* "Cartesian product, then keep the rows that line up." Which is, letter for letter, the SQL you wrote on W6D2:
+So a join is *just* "Cartesian product, then keep the rows that line up." Which is, letter for letter, the SQL you wrote on W06D2:
 
 ```sql
 SELECT * FROM pages JOIN brands ON pages.brand_slug = brands.slug;
 ```
 
-The `ON pages.brand_slug = brands.slug` is the selection condition; the `JOIN` is the product. The product builds every possible pairing (Sitting 1's Cartesian product, doing real work at last); the `ON` keeps the true ones (Sitting 3's selection). The foreign key from W6D3 is what guarantees each page's `brand_slug` finds exactly one matching `brands.slug`.
+The `ON pages.brand_slug = brands.slug` is the selection condition; the `JOIN` is the product. The product builds every possible pairing (Sitting 1's Cartesian product, doing real work at last); the `ON` keeps the true ones (Sitting 3's selection). The foreign key from W06D3 is what guarantees each page's `brand_slug` finds exactly one matching `brands.slug`.
 
 The remaining operations are the plain set operations from Sitting 1, lifted to tables of the same shape: **union** (`∪`, SQL `UNION`), **intersection** (`∩`, SQL `INTERSECT`), **difference** (`−`, SQL `EXCEPT`). They're the rows-in-either, rows-in-both, rows-in-A-not-B operations you already met on numbers, now on tables. Set theory, still load-bearing, three floors up.
 
 ## 3.2 A real query, dissolved into algebra
 
-Take a question with some meat on it — the kind W6D2 had you write:
+Take a question with some meat on it — the kind W06D2 had you write:
 
 > "The display names of all brands that have at least one successfully-fetched page."
 
@@ -405,13 +405,13 @@ Now watch it decompose into three algebra operations, applied inside-out — eac
 2. `σ_status=200(…)` — selection: throw away the rows whose page didn't return 200.
 3. `π_name(…)` — projection: keep only the brand name column.
 
-Three operations, nested. The SQL keywords (`JOIN … ON`, `WHERE`, `SELECT`) are a *surface syntax* — a friendlier order of writing — for that nested stack of `⋈`, `σ`, `π`. When you wrote that query on W6D2 and it "just worked," this is the machinery it compiled down to. The query is to the algebra what your Python is to bytecode in the [assembly sideline](assembly.md): a humane layer over a precise, smaller machine underneath.
+Three operations, nested. The SQL keywords (`JOIN … ON`, `WHERE`, `SELECT`) are a *surface syntax* — a friendlier order of writing — for that nested stack of `⋈`, `σ`, `π`. When you wrote that query on W06D2 and it "just worked," this is the machinery it compiled down to. The query is to the algebra what your Python is to bytecode in the [assembly sideline](assembly.md): a humane layer over a precise, smaller machine underneath.
 
 ## 3.3 Declarative vs imperative — Codd's actual gift
 
 Here's why this matters beyond elegance, and it pays off the history from §1.8. Notice what your SQL query did *not* say. It never said *how* to compute the answer. It didn't say "loop over pages, for each one look up its brand, check the status, collect the names." It only described *what* the answer is — a true description, in algebra-backed logic — and left the *how* to the database.
 
-That's the distinction between **declarative** ("describe what you want") and **imperative** ("spell out each step"), and it's the entire reason the relational model won. With the old pointer-navigation databases from §1.8, you wrote the *how* by hand, welded to the data's physical layout. With Codd's model, you write the *what*, and a component called the **query planner** decides the *how* — which table to scan first, whether to use that index W6D3 mentioned, what order to join in. It can pick a *different* plan tomorrow if the data grows, without you changing a character of the query.
+That's the distinction between **declarative** ("describe what you want") and **imperative** ("spell out each step"), and it's the entire reason the relational model won. With the old pointer-navigation databases from §1.8, you wrote the *how* by hand, welded to the data's physical layout. With Codd's model, you write the *what*, and a component called the **query planner** decides the *how* — which table to scan first, whether to use that index W06D3 mentioned, what order to join in. It can pick a *different* plan tomorrow if the data grows, without you changing a character of the query.
 
 The relational algebra is what makes that possible: because every query is provably equivalent to some expression in this tiny algebra, and because the algebra has *laws* (e.g. `σ` can often slide inside a `⋈` to filter rows *before* the expensive join instead of after — "selection pushdown"), the planner can shuffle the operations into a faster-but-equivalent order, guaranteed to give the same answer. You get to think in *what*; the machine optimizes the *how*; the algebra is the contract between them that keeps the answer correct. That is Codd's 1970 promise, made of set theory, running every time you hit Enter.
 
@@ -423,13 +423,13 @@ Engineering always compromises the math, and SQL is no exception. Three places w
 
 **Columns are ordered, and you can ask by position.** In Sitting 1's clean model, attributes are named and unordered. SQL lets `SELECT *` lean on column *order* and even lets you `ORDER BY 1` (meaning "the first column"). A small impurity, mostly harmless, occasionally a footgun when someone reorders columns and a positional reference silently shifts.
 
-**NULL breaks two-valued logic — and this is the formal answer to a W6D3 mystery.** W6D3 left you with a rule you had to half-take-on-faith: `WHERE description = NULL` returns nothing, and you must write `IS NULL` instead. It explained: "SQL treats NULL as unknown, and any comparison with unknown is itself unknown — not true." That explanation was the *whole truth in disguise*. Pure relational logic is **two-valued**: every condition is either TRUE or FALSE, full stop — the crisp world of Sitting 1's sets, where a tuple is in or out. NULL shatters that. To represent "value unknown / not applicable," SQL adopts **three-valued logic** (after the logician Stephen Kleene): every condition evaluates to TRUE, FALSE, *or* **UNKNOWN**. And the rules of this third logic are exact:
+**NULL breaks two-valued logic — and this is the formal answer to a W06D3 mystery.** W06D3 left you with a rule you had to half-take-on-faith: `WHERE description = NULL` returns nothing, and you must write `IS NULL` instead. It explained: "SQL treats NULL as unknown, and any comparison with unknown is itself unknown — not true." That explanation was the *whole truth in disguise*. Pure relational logic is **two-valued**: every condition is either TRUE or FALSE, full stop — the crisp world of Sitting 1's sets, where a tuple is in or out. NULL shatters that. To represent "value unknown / not applicable," SQL adopts **three-valued logic** (after the logician Stephen Kleene): every condition evaluates to TRUE, FALSE, *or* **UNKNOWN**. And the rules of this third logic are exact:
 
 - `200 = NULL` → **UNKNOWN** (not FALSE — you genuinely can't say, because NULL might be anything).
 - `NULL = NULL` → **UNKNOWN** (two unknowns might or might not be equal; you can't claim they're equal).
 - `WHERE` keeps a row only when its condition is *exactly* **TRUE** — and UNKNOWN is not TRUE, so the row is dropped.
 
-That is the entire reason `WHERE description = NULL` returns nothing: the comparison is UNKNOWN for every row, UNKNOWN is not TRUE, every row is dropped, you get the empty set. `IS NULL` exists as a separate operator precisely because it's the one test that returns honest TRUE/FALSE about nullness instead of collapsing to UNKNOWN. So the small annoyance W6D3 told you to memorize is the visible tip of a whole alternate logic that the presence of "unknown" forces on the system.
+That is the entire reason `WHERE description = NULL` returns nothing: the comparison is UNKNOWN for every row, UNKNOWN is not TRUE, every row is dropped, you get the empty set. `IS NULL` exists as a separate operator precisely because it's the one test that returns honest TRUE/FALSE about nullness instead of collapsing to UNKNOWN. So the small annoyance W06D3 told you to memorize is the visible tip of a whole alternate logic that the presence of "unknown" forces on the system.
 
 > Codd himself argued NULL was a necessary evil and three-valued logic the price of admitting "we don't know" into a database. Critics (notably C. J. Date) argue it was a mistake that bends the clean two-valued algebra out of true. The debate is decades old and unresolved. *I'm sorry, Dave — I'm afraid `NULL = NULL` can't be `True`.* HAL would have understood three-valued logic perfectly; it's the rest of us who trip over it.
 
@@ -453,7 +453,7 @@ In `journal/relational-3.md`:
 
 4. **Predict, then run.** Before executing: will `SELECT title FROM pages;` and `SELECT DISTINCT title FROM pages;` ever return a *different number of rows*? Say when they would and when they wouldn't, in terms of "bag vs set." Then run both and edit your journal with what you saw and whether your prediction held.
 
-5. The closing one, the one that ties the three sittings together: explain, in three or four sentences, why `WHERE description = NULL` returns no rows — using the words **three-valued logic**, **UNKNOWN**, and **TRUE**. This is the W6D3 rule you took on faith, now derived from first principles. If you can write this paragraph cleanly, you've earned the whole sideline.
+5. The closing one, the one that ties the three sittings together: explain, in three or four sentences, why `WHERE description = NULL` returns no rows — using the words **three-valued logic**, **UNKNOWN**, and **TRUE**. This is the W06D3 rule you took on faith, now derived from first principles. If you can write this paragraph cleanly, you've earned the whole sideline.
 
 ---
 
@@ -470,6 +470,6 @@ None of this makes you faster at writing queries tomorrow. That's not what it's 
 
 ## Where to next
 
-- **Back to the work:** [W6D3.md](../W6D3.md) is the instinct version of all of this — reread it now and watch the hand-wavy parts ("rows have no order," "don't copy values," "NULL is unknown") snap into the formal ideas they were standing in for.
+- **Back to the work:** [W06D3.md](../W06D3.md) is the instinct version of all of this — reread it now and watch the hand-wavy parts ("rows have no order," "don't copy values," "NULL is unknown") snap into the formal ideas they were standing in for.
 - **The layer below SQL's friendliness** is the same shape as the layer below Python: [assembly](assembly.md). Both sidelines are the same lesson — a humane surface sitting on a precise machine — told at opposite ends of the stack.
 - **If the curiosity really takes hold:** the readable classic is *Database Design and Relational Theory* by C. J. Date (opinionated, rigorous, and not shy about where SQL bends the math). For the source itself, Codd's original 1970 paper, *"A Relational Model of Data for Large Shared Data Banks,"* is ten pages and more readable than its title — worth a look once just to see where the whole thing started. Save either for when the itch hits; neither is homework.

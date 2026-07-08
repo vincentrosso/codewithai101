@@ -1,13 +1,13 @@
 # Why Do Unit Tests?
 *v1.0.0*
 
-This is a sideline reference, not a paced lesson. Read it the moment writing a test feels like busywork — like you're typing the code twice, or proving something you can already see is true with your own eyes. That feeling is real, and it's worth answering head-on. Week 5's foundations day (W5D3) covered *what* a test is and *how* the pieces work. This is the other question: *why bother.* There's no time budget and nothing to commit. There's a short reflection prompt at the bottom.
+This is a sideline reference, not a paced lesson. Read it the moment writing a test feels like busywork — like you're typing the code twice, or proving something you can already see is true with your own eyes. That feeling is real, and it's worth answering head-on. Week 5's foundations day (W05D3) covered *what* a test is and *how* the pieces work. This is the other question: *why bother.* There's no time budget and nothing to commit. There's a short reflection prompt at the bottom.
 
 ---
 
 ## The honest objection first
 
-You wrote `parse_page` in Week 2. You can read it. You can see it pulls the title out of the `<title>` tag. So when W5D1 asked you to write a test that hands `parse_page` some HTML and asserts the title comes back right — it can feel like you're being asked to prove that water is wet. You *wrote* the function. Of course it extracts the title. Why write a second piece of code to confirm the first piece does what you just watched it do?
+You wrote `parse_page` in Week 2. You can read it. You can see it pulls the title out of the `<title>` tag. So when W05D1 asked you to write a test that hands `parse_page` some HTML and asserts the title comes back right — it can feel like you're being asked to prove that water is wet. You *wrote* the function. Of course it extracts the title. Why write a second piece of code to confirm the first piece does what you just watched it do?
 
 Here's the thing the objection misses: **the test isn't for the function as it is today. It's for the function as it will be six weeks from now, after you and Claude Code have edited the file eleven times and you no longer remember what the original promise was.**
 
@@ -17,9 +17,9 @@ A test is a promise you make once and a machine keeps forever. That's the whole 
 
 ## Reason 1 — The alarm that doesn't depend on you remembering
 
-W5D1 told this story: you accept a clean-looking diff, run the script once, it prints something reasonable, you commit. Two days later the canonical URL is always `None`. *When did that break?* You don't know, because nothing was watching.
+W05D1 told this story: you accept a clean-looking diff, run the script once, it prints something reasonable, you commit. Two days later the canonical URL is always `None`. *When did that break?* You don't know, because nothing was watching.
 
-A test is the thing that watches. You wrote `test_parse_page_extracts_canonical` on W5D2. From that moment on, every `pytest` run re-checks that promise — not because you remembered to, but because the test exists and pytest finds it. The alarm fires on the run *where the break happened*, not two days later when a brand's output looks wrong.
+A test is the thing that watches. You wrote `test_parse_page_extracts_canonical` on W05D2. From that moment on, every `pytest` run re-checks that promise — not because you remembered to, but because the test exists and pytest finds it. The alarm fires on the run *where the break happened*, not two days later when a brand's output looks wrong.
 
 The value isn't in the test passing today. It's in the test failing on the one day, months from now, when something breaks the canonical extraction — and saving you the afternoon you'd otherwise spend bisecting commits trying to find out when.
 
@@ -27,7 +27,7 @@ The value isn't in the test passing today. It's in the test failing on the one d
 
 This is the reason that matters most for *this* course, and it's why testing comes right after the Claude Code weeks instead of before them.
 
-In Week 4 your only defense against a bad edit was reading the diff (W4D3). That defense has a hole you already know about: a diff can look completely reasonable and still break a behavior three functions away that the diff never touched. You can't catch that by reading. No human can.
+In Week 4 your only defense against a bad edit was reading the diff (W04D3). That defense has a hole you already know about: a diff can look completely reasonable and still break a behavior three functions away that the diff never touched. You can't catch that by reading. No human can.
 
 A test suite can. When Claude Code hands you a 60-line diff that refactors `parse.py`, you don't have to hold the entire file's behavior in your head and reason about every consequence. You read the diff for *intent* — is it doing roughly the right thing? — and then you run `pytest`. If the suite stays green, every promise you wrote down still holds, including the ones the diff didn't seem to be near. If something went red, the failure message names the exact behavior that changed.
 
@@ -35,7 +35,7 @@ That's the trade that makes AI-assisted coding safe instead of scary: **you revi
 
 ## Reason 3 — The tests are documentation that can't lie
 
-W5D2 made this point and it's worth saying again from the motivation side. Read your test names top to bottom:
+W05D2 made this point and it's worth saying again from the motivation side. Read your test names top to bottom:
 
 ```
 test_parse_page_extracts_title
@@ -53,7 +53,7 @@ This is why people say code without tests is a rumor. The code does *something*;
 
 ## Reason 4 — Writing the test makes the code better
 
-Notice something about Week 5: `parse_page` was easy to test and `fetch_one` was hard, and the reason was structural (W5D3 — pure vs side-effectful). That wasn't luck. W3D2 split the modules so the network-touching code (`fetch.py`) and the pure transform (`parse.py`) lived apart.
+Notice something about Week 5: `parse_page` was easy to test and `fetch_one` was hard, and the reason was structural (W05D3 — pure vs side-effectful). That wasn't luck. W03D2 split the modules so the network-touching code (`fetch.py`) and the pure transform (`parse.py`) lived apart.
 
 Here's the feedback loop: *the act of trying to test a function tells you whether it's well-built.* If a function is a pain to test — if you can't figure out how to call it without spinning up the whole pipeline, or you need to fake five things to get it to run — that's a signal the function is doing too much. The test difficulty is information about the design.
 
@@ -69,10 +69,10 @@ The break-even point is closer than it feels. Suppose you change `parse.py` and 
 
 ## When NOT to write a test
 
-Tests are not free, and pretending they are is how you end up with a slow, brittle suite nobody trusts (W5D3 §7, flaky tests). Skip the test, or wait, when:
+Tests are not free, and pretending they are is how you end up with a slow, brittle suite nobody trusts (W05D3 §7, flaky tests). Skip the test, or wait, when:
 
 - **The code is a throwaway experiment.** A scratch script you'll delete this afternoon doesn't need a test. Tests are for code that lives.
-- **The test would just restate the implementation.** A test that asserts "the function calls `soup.find` with these exact arguments" breaks every time you refactor, even when the behavior is identical. That's an implementation test, and it's worse than no test — it punishes you for improving the code. Test the *output*, not the *how* (this is the exact judgment W5D5 asks you to make on Claude's test).
+- **The test would just restate the implementation.** A test that asserts "the function calls `soup.find` with these exact arguments" breaks every time you refactor, even when the behavior is identical. That's an implementation test, and it's worse than no test — it punishes you for improving the code. Test the *output*, not the *how* (this is the exact judgment W05D5 asks you to make on Claude's test).
 - **The behavior genuinely isn't decided yet.** If you're still figuring out what a function should do, a test pins down an answer you haven't committed to. Write it once the behavior is real.
 - **The cost of the bug is trivial and the cost of the test is high.** A test that needs forty lines of fake setup to verify a five-line helper that, if wrong, produces a slightly-off log message — that ratio doesn't pay. Judgment, not dogma.
 
@@ -90,7 +90,7 @@ That's why you test. Not to prove the code works now. To find out, automatically
 
 ## A reflection (no AI)
 
-You answered two questions in your W5D5 retrospective: *where did a test feel unnecessary*, and *where did a test save you*. Come back to those after you've read this.
+You answered two questions in your W05D5 retrospective: *where did a test feel unnecessary*, and *where did a test save you*. Come back to those after you've read this.
 
 ```
 ## Why test — second look
@@ -111,6 +111,6 @@ The second question is the real one. The function you'd be *nervous* to let Clau
 
 - The next time a test feels like proving water is wet, ask: *would I still be sure this works after Claude Code refactored the whole file?* If the honest answer is "I'd have to re-read it carefully," that's the test earning its place.
 - When Claude Code proposes a diff, run the suite *after* you read it, every time. Make it a reflex, the way reading the diff became a reflex in Week 4.
-- Weeks 6 and 7 add a database and live LLM calls — both side-effectful (W5D3 §3), both things you'll mock (W5D4) to keep tests fast and offline. The reasons here don't change; the techniques just stretch to cover new kinds of code.
+- Weeks 6 and 7 add a database and live LLM calls — both side-effectful (W05D3 §3), both things you'll mock (W05D4) to keep tests fast and offline. The reasons here don't change; the techniques just stretch to cover new kinds of code.
 
-Companion: [W5D3.md](../W5D3.md) — the mental model (units, pure vs side-effectful, the pyramid). This sideline is the *why*; that day is the *what* and *how*.
+Companion: [W05D3.md](../W05D3.md) — the mental model (units, pure vs side-effectful, the pyramid). This sideline is the *why*; that day is the *what* and *how*.
