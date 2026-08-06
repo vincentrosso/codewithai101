@@ -217,6 +217,13 @@ Versions follow `major.minor.patch`. Default bump is **patch** (typos, wording, 
 
 ---
 
+## sidelines/git-under-the-hood.md
+
+### v1.0.0 — 2026-08-06
+- Initial release: the machine under W10D3's pointer model, built as three un-paced sittings each with a no-AI drill. Sitting 1 (history) — the five questions version control exists to answer; SCCS/RCS per-file deltas + locking as pessimistic concurrency; CVS's whole-project networked repo + optimistic concurrency, and its leaks (non-atomic commits, renames destroy history, branching agony — the origin of "don't branch" folklore); SVN's atomic global revisions and remaining centralization costs; the BitKeeper affair and the April 2005 timeline (self-hosting in 4 days); Linus's six design goals; centralized-vs-distributed table + the two second-order effects (commit stopped being social; the PR workflow is a *product* of distribution). Sitting 2 (internals) — git as a content-addressed key-value store; SHA-1 properties + the `blob 5\0hello` header detail (verified against `git hash-object`) + the SHAttered/SHA-256 note; the four object types walked live via `cat-file -p` commit→tree→blob; snapshots-not-deltas and why dedup answers the storage objection (packfiles as a *storage* detail the model doesn't depend on); the DAG with acyclicity as a cryptographic impossibility; refs and HEAD as literal files; the Merkle chain → tamper-evidence (and the blockchain parallel, four years earlier); the three trees (HEAD/index/working dir) with the command→trees table that demystifies `--soft`/`--mixed`/`--hard` and every `diff` variant; three-way merge + merge base as lowest common ancestor, and rebase's golden rule derived rather than memorized; reachability, garbage, and the 90-day reflog safety net. Sitting 3 (commands) — grouped by problem: looking around (`log --graph/-S/-p`, `show <commit>:<path>`, the two-dot vs three-dot diff, `blame -L`, `grep`, `shortlog`), undo ranked by danger (`restore` → `--amend` → `revert` → `reset` → `clean -nd` → `reflog` as the undo-for-your-undo), moving work (`stash`, `cherry-pick`, `rebase -i`, `switch`, `worktree`), `bisect run pytest -q` as the payoff of the small-commits habit, remotes (`fetch` vs `pull`, what `origin/main` actually is, `--force-with-lease`), housekeeping (`tag`, `rm --cached` as the W06D1 `.gitignore` rule underneath, `check-ignore -v`, the `git lg` alias); closes with a six-command short list. Cross-links to W10D3, assembly.md, relational-model.md, Pro Git ch. 10; light Kubrick (HAL, Strangelove, Hartman on `reset --hard`, Nadsat).
+
+---
+
 ## W06D1.md
 
 ### v1.0.0 — 2026-05-27
@@ -378,6 +385,9 @@ Versions follow `major.minor.patch`. Default bump is **patch** (typos, wording, 
 ---
 
 ## W10D3.md
+
+### v1.0.1 — 2026-08-06
+- Added a callout at the end of §5 pointing to the new [git-under-the-hood](sidelines/git-under-the-hood.md) sideline — the machine under the day's pointer model; names `git reflog` and `git bisect run pytest -q` as the two commands worth knowing about immediately
 
 ### v1.0.0 — 2026-06-18
 - Initial release: foundations day — a commit as a snapshot-with-a-parent; the commit graph; a branch as a pointer (not a copy) and `HEAD`; the diverged-labels picture behind "main doesn't have that commit"; fast-forward vs merge commit (two parents); merge conflicts as git refusing to guess; the three properties (isolation / review-before-merge / parallel work); no-AI mini-quiz
