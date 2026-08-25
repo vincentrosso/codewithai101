@@ -475,3 +475,59 @@ Versions follow `major.minor.patch`. Default bump is **patch** (typos, wording, 
 
 ### v1.0.0 — 2026-06-18
 - Initial release: course finale — full demo empty db → robot-deployed public site with whole-arc narration (the two journeys); final grounding judgment on a live public brief; the grand break-and-catch across the whole stack (diagnose which *layer*: code/build/infra/deploy, and which catcher owns it); Claude-judging the finished system's "what to improve next"; the big course retrospective (Week-1-me vs now, the Edit habit, how I work with AI, what I'd build next); Course 2 preview (FastAPI/Docker/dynamic backend/CloudFront)
+
+---
+
+## qa/README.md
+
+### v1.0.0 — 2026-08-25
+- Initial release: QA track overview — the pinned practice app (Toolshop demo at practicesoftwaretesting.com) with seeded accounts and use rules, the `~/dev/qa-lab` deliverable layout, the six-lesson table, and the two threads (judgment in 1–4, Claude against that judgment in 5–6)
+
+---
+
+## qa/QA01.md
+
+### v1.0.0 — 2026-08-25
+- Initial release: QA vs QC vs testing; "you cannot prove software works, you can only sample it"; the six **oracles** (spec, self-consistency, comparable products, user expectation, purpose, standards/law) as the source of every expected result; the lab repo; the app map built before judging; a one-page test plan whose load-bearing sections are "what I'm NOT testing" and "known gaps"; a likelihood×impact risk list that sets the order of everything after it; a predict-before-you-click exercise on quantity-zero
+
+---
+
+## qa/QA02.md
+
+### v1.0.0 — 2026-08-25
+- Initial release: the six fields of a test case and the four rules (must be able to fail, concrete values, one behavior each, preconditions are part of the case); **equivalence partitioning** (one representative per valid partition, each invalid partition separately — they hit different code paths); **boundary value analysis** (below/at/above, plus boundaries in text length, time, collections, money); **decision tables** built from the real payment methods, with pairwise named as the answer to combinatorial explosion; **state transitions** (back button, second tab, logout mid-checkout) and "unspecified — needs a product decision" as a legitimate expected result; ~20-case suite tagged by technique
+
+---
+
+## qa/QA03.md
+
+### v1.0.0 — 2026-08-25
+- Initial release: execution logs with four results — PASS/FAIL/**BLOCKED**/**NOT RUN** — and why hiding the last two is the most damaging thing a tester does; where scripted testing runs out ("a scripted test asks yesterday's question"); session-based exploratory testing with a written charter, a real timer, terse in-flight notes, and the three closing lines; steering heuristics (tours, Goldilocks, CRUD); isolation as craft — reproduce, minimize, vary one thing, get DevTools evidence; the bug report anatomy, severity vs priority, naming the oracle, and reporting facts rather than diagnoses
+
+---
+
+## qa/QA04.md
+
+### v1.0.0 — 2026-08-25
+- Initial release: why regression is structural, not carelessness (callback to W05's silent `None`); smoke/sanity/regression/acceptance as breadth×depth; a ≤10-case smoke suite ordered so the earliest failure kills the run fastest; timing it with a stopwatch and doing the annual-cost arithmetic as the business case for automation; what should never be automated (one-offs, unstable UI, judgment, exploration); flaky tests as training people to ignore failures; risk-based regression selection; the coverage lie (execution ≠ thought); the release-readiness page with accepted risks; the ranked automation shortlist that Lesson 6 builds
+
+---
+
+## qa/QA05.md
+
+### v1.0.0 — 2026-08-25
+- Initial release: Claude as a QA thinking partner — five rules (it can't see the app; a generated case is a hypothesis; you supply facts, it supplies coverage; never file a generated report unedited; judge everything in writing); context-loaded gap-analysis prompt plus the **pre-mortem** reframe ("act as a developer who wrote this badly"); the five verdicts (REAL-new / DUPLICATE / HALLUCINATED / VAGUE / OUT OF SCOPE), a tally, and a measured real-new rate; which *technique* the gaps cluster in as a read on the learner's weakest muscle; every added case must be executed the same day; the thin-note hallucination demo and why the real cost is trust, not the wasted hour
+
+---
+
+## qa/QA06.md
+
+### v1.0.0 — 2026-08-25
+- Initial release: Playwright + pytest harness; the learner writes the first test by hand as the standard to judge the rest against; selector discipline (`data-test` → role/name → text → CSS, never XPath, never `sleep()`); Claude Code writes the rest one case per diff, reviewed against three questions (does the assertion match the manual expected result / could this test fail / where did that selector come from); green→red→green for both failure shapes (false assertion vs missing selector); GitHub Actions on push + daily cron with `--with-deps` and failure artifacts; **"a failing test is a question, not a task"** — the weaken-the-assertion failure mode, demonstrated by contrasting "fix the failing test" with "diagnose without changing assertions"; where to go next (API testing, accessibility, ISTQB vocabulary, *Explore It!*)
+
+---
+
+## README.md
+
+### v1.1.0 — 2026-08-25
+- Added the "QA track (post-course, 6 lessons)" section between Week 12 and Course 2 — six-lesson table, the pinned practice app, the separate `qa-lab` repo, and the AI-free 1–4 / Claude 5–6 split

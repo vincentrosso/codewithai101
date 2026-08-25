@@ -152,6 +152,19 @@ The loop closes: GitHub Actions deploys to S3 on a green merge to `main`, so "sh
 | [Week 12, Day 4](W12D4.md) | Capstone build: a clean run from an empty database all the way to a robot-deployed live site; fix whatever breaks; finalize the project README + `requirements.txt` |
 | [Week 12, Day 5](W12D5.md) | **Course finale** — the MVP live on the internet, the grand break-and-catch across the whole system, judge Claude on the finished tool, the big course-long retrospective |
 
+## QA track (post-course, 6 lessons)
+
+A short module that flips the chair around: instead of building Brand Lens, you decide whether software is good enough to ship. It assumes the twelve weeks — `pytest`, git, PRs, CI, reading a diff before accepting it — and targets one pinned practice app, the [Toolshop](https://practicesoftwaretesting.com) demo store, so every exercise is concrete and reproducible. Work lands in a separate repo (`~/dev/qa-lab`), not in `brand-lens`. **Lessons 1-4 are AI-free**, on the Week 1 principle: you can't judge Claude's test cases in Lesson 5 if you've never written your own. Overview and deliverables in [qa/README.md](qa/README.md).
+
+| Lesson | Focus |
+|--------|-------|
+| [QA 1](qa/QA01.md) | What QA actually is; oracles - where "expected result" comes from with no spec; app map, test plan, risk list |
+| [QA 2](qa/QA02.md) | Test design: equivalence partitioning, boundary values, decision tables, state transitions - a ~20-case suite, each case tagged with its technique |
+| [QA 3](qa/QA03.md) | Execution (PASS/FAIL/**BLOCKED**/**NOT RUN**), a timed exploratory session with a charter, isolating and minimizing a bug, the bug report - severity vs priority, actual vs expected, naming the oracle |
+| [QA 4](qa/QA04.md) | Regression levels, a 10-case smoke suite timed with a stopwatch, the annual-cost arithmetic, flakiness, why coverage metrics mislead, release readiness, the automation shortlist |
+| [QA 5](qa/QA05.md) | **Claude as a thinking partner** - gap analysis on his own suite, judged suggestion-by-suggestion with a measured real-new rate; the pre-mortem prompt; a deliberate fabricated-bug-report demo |
+| [QA 6](qa/QA06.md) | **Claude Code as a QA engineer** - Playwright smoke tests reviewed diff-by-diff, selector discipline, green->red->green, Actions on push + a daily cron, and "a failing test is a question, not a task" |
+
 ## Course 2 (what doesn't make the cut)
 
 Brand Lens reaches its deployed MVP at the end of Week 12, and the course closes there. The heavier, more abstract topics a static site simply doesn't need are deferred to a follow-on course, where each is motivated by a real need rather than introduced for its own sake: **FastAPI as a framework, Docker/containers, ECS/Fargate, and a genuinely dynamic backend** — the day Brand Lens needs to *do* something at request time (live search, a trigger-a-scrape button, auth). HTTPS and a custom domain via **CloudFront** (an S3 website endpoint is HTTP-only) is a natural Course-2 opener.

@@ -15,11 +15,19 @@ W01D1.md … W12D5.md — daily lessons (the day count restarts at "day N:" in c
 README.md          — course overview, format, full week-by-week table, sidelines index, future ideas
 CHANGELOG.md       — per-file version history (semver; default bump = patch)
 sidelines/         — reference material outside the day-by-day flow (read when curious, not paced)
+qa/                — post-course QA track: QA01–QA06 + its own README (see below)
 ```
 
 The weekly rhythm from Week 2 on is consistent and should be preserved when drafting new weeks: **D1/D2/D4 are hands-on building, D3 is a no-AI foundations day (conceptual + mini-quiz), D5 is the Friday mentor review** (demo → break-and-catch → judge a Claude-written artifact → retrospective journal). The capstone's `brand-lens` code state at the end of each week is cumulative — new weeks build on the files prior weeks created (`fetch.py`, `parse.py`, `runner.py`, `brands.yaml`, then `db.py`, `brief.py`, `render.py`, `templates/`, `tests/`).
 
 Sidelines are kebab-case `.md` files in `sidelines/`, each linked from the README sidelines table and from the lesson day where they're most relevant.
+
+## QA Track
+
+`qa/QA01.md`–`qa/QA06.md` is a six-lesson post-course module on quality assurance, assuming all twelve weeks (pytest, git, PRs, CI, diff review). Same lesson format as a course day. Two constraints to preserve when editing:
+
+- **Lessons 1–4 are AI-free**, on the Week 1 principle — the learner can't judge Claude's test cases in Lesson 5 without having written his own. Lesson 5 is browser Claude (thinking partner: gap analysis, pre-mortems, critique); Lesson 6 is Claude Code (writing Playwright tests, CI).
+- **One pinned practice app**: the Toolshop demo at `practicesoftwaretesting.com` (UI + an API at `api.practicesoftwaretesting.com`, seeded `customer@`/`admin@` accounts, password `welcome01`). Don't swap it for a generic "app of your choice" — concreteness is the point. Deliverables land in a separate repo (`~/dev/qa-lab`), never in `brand-lens`.
 
 ## Pedagogical Constraints
 
